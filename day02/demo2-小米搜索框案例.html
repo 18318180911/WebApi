@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+  
+        ul {
+          list-style: none;
+          display: none;
+        }
+  
+        .millet {
+          position: relative;
+          width: 223px;
+          margin: 100px auto;
+        }
+  
+        .millet input {
+          width: 223px;
+          height: 48px;
+          padding: 0 10px;
+          font-size: 14px;
+          line-height: 48px;
+          border: 1px solid #e0e0e0;
+          outline: none;
+        }
+  
+        .millet .search {
+          border: 1px solid #ff6700;
+        }
+  
+        .result-list {
+          position: absolute;
+          left: 0;
+          top: 48px;
+          width: 223px;
+          border: 1px solid #ff6700;
+          border-top: 0;
+          background: #fff;
+        }
+  
+        .result-list a {
+          display: block;
+          padding: 6px 15px;
+          font-size: 12px;
+          color: #424242;
+          text-decoration: none;
+        }
+  
+        .result-list a:hover {
+          background-color: #eee;
+        }
+      </style>
+</head>
+<body>
+    <div class="millet">
+        <ul class="result-list">
+            <button type="search" placeholder="小米笔记本"></button>
+            <li><a href="#">小米1</a></li>
+            <li><a href="#">小米2</a></li>
+            <li><a href="#">小米3</a></li>
+            <li><a href="#">小米4</a></li>
+            <li><a href="#">小米5</a></li>
+            <li><a href="#">小米6</a></li>
+            <li><a href="#">小米7</a></li>
+        </ul>
+    </div>
+    <!-- 需求：当表单得到焦点，显示下拉菜单，失去焦点隐藏下拉菜单 -->
+
+</body>
+</html>

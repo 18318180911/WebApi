@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        .d1 {
+          background-image: url(./images/course01.png);
+        }
+        .d2 {
+          background-image: url(./images/course02.png);
+        }
+        .d3 {
+          background-image: url(./images/course03.png);
+        }
+        .d4 {
+          background-image: url(./images/course04.png);
+        }
+      </style>
+</head>
+<body></body>
+<script>
+    // body标签添加背景图片
+    // let pics = [
+    //   './images/course01.png',
+    //   './images/course02.png',
+    //   './images/course03.png',
+    //   './images/course04.png',
+    // ];
+
+    // let index = Math.round(Math.random() * (pics.length - 1));
+
+    // document.body.style.backgroundImage = `url(${pics[index]})`;
+
+    let pics = ['d1', 'd2', 'd3', 'd4'];
+
+    let index = Math.round(Math.random() * (pics.length - 1));
+
+    document.body.classList.add(pics[index]);
+  </script>
+</html>

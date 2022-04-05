@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn1">抽奖</button>
+    <button class="btn2">抽奖</button>
+    <div></div>
+    <script>
+        /* 三件要素：触发事件DOM元素；事件类型；事件触发做业务执行函数 */
+        // 获取btn对象
+        let btn1 = document.querySelector('.btn1');
+        // click：鼠标单击
+        btn1.addEventListener('click', function () {
+            console.log('开始抽奖');
+        })
+        let btn2 = document.querySelector('.btn2');
+        btn2.addEventListener('click', function () {
+            console.log('退出抽奖');
+        })
+        let div = document.querySelector('div');
+        // mouseover：鼠标移入到div的区域内
+        div.addEventListener('mouseover', function () {
+            console.log('开奖');
+        })
+    </script>
+</body>
+</html>

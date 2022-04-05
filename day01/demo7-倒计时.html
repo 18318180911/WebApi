@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        span {
+            margin-top: 100px;
+            margin-left: 500px;
+            display: block;
+            background-color: aqua;
+            width: 300px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <span></span>
+    <script>
+        // 获取btn对象
+        let span = document.querySelector('span');
+        let count = 61
+        // 开启定时器
+        let timeId = setInterval(function() {
+            count--;
+            span.innerText = count;
+            // console.log(count)
+             if (count == 0) {
+                 count = 61
+                //  clearInterval(timeId)
+             }
+        }, 1000)
+    </script>
+</body>
+</html>

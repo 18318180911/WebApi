@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="nav">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        依次输出3个li的DOM对象
+        let lis = document.querySelectorAll('li');
+        for (let index = 0; index < lis.length; index++) {
+            lis[index].innerText = `这个是li标签` + index;
+            
+        }
+        console.dir(lis);
+        // document.querySelector('li:nth-child(2)').innerText = '<button>修改</button>'
+        // document.querySelector('li:nth-child(3)').innerHTML = '<button>修改</button>'
+    </script>
+</body>
+</html>

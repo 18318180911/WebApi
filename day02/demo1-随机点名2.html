@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1></h1>
+    <button class="start">开始点名</button>
+    <button class="end">结束点名</button>
+    <script>
+        // 声明数组
+        let names = ['张三', '李四', '王五', '大耳朵图图', '懒洋洋'];
+        // 获取DOM元素
+        let h1Dom = document.querySelector('h1');
+        let start = document.querySelector('.start');
+        let end = document.querySelector('.end');
+        let timerId;
+        // 想要页面一刷新就跟点击开始一样的效果
+        function newStart() {
+             // 添加啊定时器
+             timerId = setInterval(function() {
+                    // 生成随机数
+                    let name = parseInt(Math.random() * names.length);
+                    // 获取随机数对应的名字
+                    let name1 = names[name];
+                     // 将名字渲染到h1中
+                    h1Dom.innerText = name1
+                }, 200)
+        };
+        newStart()
+        // 开始点名
+        // 为按钮添加单击事件的监听
+        start.addEventListener('click', function() {
+            // // 添加啊定时器
+            // timerId = setInterval(function() {
+            //         // 生成随机数
+            //         let name = parseInt(Math.random() * names.length);
+            //         // 获取随机数对应的名字
+            //         let name1 = names[name];
+            //          // 将名字渲染到h1中
+            //         h1Dom.innerText = name1
+            //     }, 200)
+            newStart();
+        });
+        // 停止点名
+        end.addEventListener('click', function() {
+            clearInterval(timerId)
+            // 删除元素
+            // names.splice(name, 1)
+        })
+    </script>
+</body>
+</html>

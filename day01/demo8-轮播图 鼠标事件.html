@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        div {
+            width: 500px;
+            height: 200px;
+            margin: 100px 300px;
+        }
+        p {
+            display: block;
+            margin-top: -30px;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body>
+    <div>
+        <img src="" alt="">
+        <p></p>
+    </div>
+    <script>
+        // 轮播图就行每隔指定的时间让img标签的src属性发生变化
+        // 获取元素
+        let img = document.querySelector('img')
+        let p = document.querySelector('p');
+        let div = document.querySelector('div');
+        // 定义一个变量标记图片索引
+        let index = 1
+        let timerId;
+        function newTimer() {
+            // 添加定时器，每间隔1s切换图片索引
+            timerId = setInterval(function() {
+                index++
+                // 判断索引是否越界
+                if (index > 9) {
+                    // 重复
+                    index = 1
+                }
+                console.log(index)
+                // 生成一个路径为img的src属性赋值
+                img.src = `./images/b0${index}.jpg`
+                p.innerText = `第${index}张图片`
+                
+            }, 1000);
+        };
+        newTimer();
+        // 想鼠标进入时，停止轮播图轮播
+        div.addEventListener('mouseenter', function() {
+            clearInterval(timerId)
+        })
+        // 鼠标移开，轮播图开始轮播
+        div.addEventListener('mouseleave', function() {
+            newTimer();
+        });
+    </script>
+</body>
+</html>

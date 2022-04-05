@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+   
+    <script>
+         // 声明数组
+         let imgs = ['./images/1.png', './images/2.png', './images/3.png', './images/4.png'];
+        // 获取DOM元素
+        let imgDom = document.querySelector('img');
+        // 生成随机数
+        let img = parseInt(Math.random() * imgs.length);
+        // 获取随机数对应的图片
+        let img1 = imgs[img];
+        // 将图片渲染到img中
+        imgDom.src = img1;
+    </script>
+</body>
+</html> 

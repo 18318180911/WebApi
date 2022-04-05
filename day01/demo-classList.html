@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        .d1 {
+          background-color: aqua;
+        }
+        .d2 {
+          height: 300px;
+        }
+        .d3 {
+          width: 400px;
+        }
+        .d4 {
+          border-radius: 50%;
+        }
+      </style>
+</head>
+<body>
+    <div class="d1 d4">123</div>
+
+    <script>
+      // 添加一个class
+      let div = document.querySelector('div');
+      // div.className="d2";
+      // classList 添加一个类
+      div.classList.add("d2","d3","d4");
+      // div.classList.add("d2");
+      // div.classList.add('d3');
+      // 单独来指定移除一个class
+      div.classList.remove("d2","d3")
+      // 切换 （如果本来有，那我就移除  ， 如果本来没有，那我就添加）
+      div.classList.toggle("d4")
+    </script>
+</body>
+</html>
