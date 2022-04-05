@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 600px;
+            height: 500px;
+        }
+        .p1 {
+            color: aqua;
+        }
+        .p2 {
+
+            margin-left: 440px;
+        }
+        textarea {
+            border: 1px solid orange;
+            border-radius: 5px;
+        }
+        button {
+            color: #fff;
+            border: 0;
+            width: 50px;
+            background-color: #3484ff;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <hr>
+        <p class="p1">说点什么吧？</p>
+        <textarea id="area" placeholder="说点什么吧..." cols="80" rows="10" maxlength="200"></textarea>
+        <p class="p2">
+            <span class="span1">0</span>
+            <span>/</span>
+            <span>200</span>
+            <button>发布</button>
+        </p>
+    </div>
+    <script>
+        // 获取元素
+        let textarea = document.querySelector('textarea');
+        let span1 = document.querySelector('.span1');
+        // inupt：用户输入文字，可以计算用户的字数
+        textarea.addEventListener('input', function() {
+            // 获取当前用户输入的内容
+            span1.innerHTML = textarea.value.length
+        })
+    </script>
+</body>
+</html>
