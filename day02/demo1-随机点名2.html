@@ -20,36 +20,36 @@
         let timerId;
         // 想要页面一刷新就跟点击开始一样的效果
         function newStart() {
-             // 添加啊定时器
-             timerId = setInterval(function() {
+            // 添加啊定时器
+            timerId = setInterval(function() {
                     // 生成随机数
                     let name = parseInt(Math.random() * names.length);
+                    
                     // 获取随机数对应的名字
                     let name1 = names[name];
+                    console.log(names);
                      // 将名字渲染到h1中
                     h1Dom.innerText = name1
+                    // 删除元素
+                    names.splice(name, 1);
+                    // 元素被删完了需要禁用
+                    if (names.length == 0) {
+                        start.disabled = true;
+                        end.disabled = true;
+                        clearInterval(timerId)
+                    }                   
                 }, 200)
         };
         newStart()
         // 开始点名
         // 为按钮添加单击事件的监听
         start.addEventListener('click', function() {
-            // // 添加啊定时器
-            // timerId = setInterval(function() {
-            //         // 生成随机数
-            //         let name = parseInt(Math.random() * names.length);
-            //         // 获取随机数对应的名字
-            //         let name1 = names[name];
-            //          // 将名字渲染到h1中
-            //         h1Dom.innerText = name1
-            //     }, 200)
             newStart();
         });
         // 停止点名
         end.addEventListener('click', function() {
             clearInterval(timerId)
-            // 删除元素
-            // names.splice(name, 1)
+            
         })
     </script>
 </body>
