@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+          list-style: none;
+          width: 600px;
+          display: flex;
+          height: 50px;
+        }
+        li {
+          flex: 1;
+          border: 1px solid #ccc;
+          line-height: 50px;
+          text-align: center;
+        }
+        .active {
+          background-color: red;
+        }
+      </style>
+</head>
+<body>
+    <ul>
+        <li>动画片</li>
+        <li>恐怖片</li>
+        <li>发战争片</li>
+        <li>科幻片</li>
+    </ul>
+    <script>
+        // 获取元素
+        let lis = document.querySelectorAll('li')
+        // 遍历伪数组，为其中的每个元素绑定单击事件
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].addEventListener('click', function() {
+            // 干掉所有元素的active样式
+            lis.forEach(function(ele, index) {
+                ele.classList.remove('active')
+            })
+            // 为当前元素添加active样式
+            // lis[i].classList.add('active')
+            this.classList.add('active')         
+        })
+      }
+    </script>
+</body>
+</html>

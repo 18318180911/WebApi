@@ -47,15 +47,15 @@
         let total = document.querySelector('#total');
         // 绑定事件
         add.addEventListener('click', function() {          
-            let num = total.value
-            // 获得当前输入框value值+1
-            num++
-            // 再赋值回去
-            total.value = num;
+            let num = total.value           
             // 大于1，减号禁用就失效
             if(num > 1) {
                 reduce.disabled = false;
             }
+            // 获得当前输入框value值+1
+            num++
+            // 再赋值回去
+            total.value = num;
         })
         reduce.addEventListener('click', function() {
             let num = total.value           
@@ -68,9 +68,7 @@
             num--; 
             // 再赋值回去
             total.value = num;
-            
-        })
-        
+        })        
     </script>
 </body>
 </html>

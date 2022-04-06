@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>大家好我是1</li>
+        <li>大家好我是2</li>
+        <li>大家好我是3</li>
+        <li>大家好我是4</li>
+        <li>大家好我是5</li>
+    </ul>
+    <script>
+        let lis = document.querySelectorAll('li');
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].addEventListener('click', function() {
+                // document.querySelector(lis)
+                console.log(lis[i].innerText);
+            })
+        }
+        
+    </script>
+</body>
+</html>
