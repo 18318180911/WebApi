@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no"
+    />
+    <title>index.html</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <div class="box w">
+    <div class="box-hd">
+      <h3>精品推荐</h3>
+      <a href="#">查看全部</a>
+    </div>
+    <div class="box-bd">
+      <ul class="clearfix list"></ul>
+    </div>
+  </div>
+
+  <body>
+    <!-- 1 引入 要显示的数据 -->
+    <script src="./data/data.js"></script>
+    <!-- 2 在写自己的业务 -->
+    <script>
+      /* 
+     1 获取到要渲染到页面中的数据  data 
+     2 遍历data
+      要求使用 createElement appendChild 来往ul中插入 li 元素 
+      1 创建一个li标签
+      2 创建一个图片便签 设置 src属性
+      3 创建一个h4标签 设置文本内容
+      4 创建一个div标签 添加一个class info
+      5 创建两个span标签
+        1个设置内容 高级 
+        2个设置人数 1125 
+
+      6 组装
+        li标签要 插入 img
+        li标签要 插入 h4
+        li标签要 插入 div.info
+        div.info 要插入两个span 
+
+        ul插入 li 
+
+    3 append可以插入多个元素  appendChild  只能插入一个元素 
+      createTextNode 创建文件节点 
+
+     
+      */
+
+      let ul = document.querySelector('.list');
+
+      for (let index = 0; index < data.length; index++) {
+        // const element = data[index];
+
+        let li = document.createElement('li');
+
+        let img = document.createElement('img');
+        img.src = data[index].src;
+
+        let h4 = document.createElement('h4');
+        h4.innerText = data[index].title;
+
+        let div = document.createElement('div');
+        div.classList.add('info');
+
+        let span1 = document.createElement('span');
+        span1.innerText = '高级';
+        let span2 = document.createElement('span');
+        span2.innerText = data[index].num;
+
+        let text1 = document.createTextNode(' • ');
+        let text2 = document.createTextNode('人在学习');
+
+        // 节点的类型  元素节点（标签）、文本节点
+
+        // 开始组装 append 可以同时插入多个标签
+        // appendChild 只能插入一个标签
+
+        div.append(span1, text1, span2, text2);
+        li.append(img, h4, div);
+
+        // li.append()
+
+        ul.appendChild(li);
+      }
+    </script>
+  </body>
+</html>

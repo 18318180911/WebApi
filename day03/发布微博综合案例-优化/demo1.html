@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/weibo.css" />
+</head>
+<body>
+    <div class="w">
+        <div class="controls">
+          <img src="./images copy/tip.png" alt="" /><br />
+          <textarea
+            placeholder="说点什么吧..."
+            id="area"
+            cols="30"
+            rows="100"
+            maxlength="200"
+          ></textarea>
+          <div>
+            <span class="useCount">0</span>
+            <span>/</span>
+            <span>200</span>
+            <button id="send">发布</button>
+          </div>
+        </div>
+        <div class="contentList">
+          <ul>
+            <li>
+              <!-- <div class="info">
+                <img class="userpic" src="./images/9.5/06.jpg" />
+                <span class="username">张良</span>
+                <p class="send-time">发布于 2022-4-7 15:12:23</p>
+              </div>
+              <div class="content">sdfdf</div>
+              <span class="the_del">X</span> -->
+            </li>
+          </ul>
+        </div>
+      </div>
+    <script>
+        /* 
+      1 给发布按钮绑定点击事件 
+        1 生成一个li标签
+          1 给li添加属性和子元素 
+          2 获取文本域的内容 设置到对应的标签中 
+        2 插入到ul中 
+
+      2 给文本域绑定 input事件 
+        获取文字的长度 设置对应的标签上 文字个数标签上
+
+      3 给删除标签 绑定点击事件
+        1 获取它的父节点 parentNode 
+        2 让它父节点 删除自己 remove()
+       */
+      let button = document.querySelector('button');
+      let ul = document.querySelector('ul');
+      // 给发布按钮绑定点击事件 
+      button.addEventListener('click', function() {
+          let li = document.createElement('li');
+          ul.appendChild(li);
+        //   console.log('获取成功')
+      })
+    </script>
+</body>
+</html>

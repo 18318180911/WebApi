@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/weibo.css" />
+  </head>
+
+  <body>
+    <div class="w">
+      <div class="controls">
+        <img src="./images copy/tip.png" alt="" /><br />
+        <textarea
+          placeholder="说点什么吧..."
+          id="area"
+          cols="30"
+          rows="100"
+          maxlength="200"
+        ></textarea>
+        <div>
+          <span class="useCount">0</span>
+          <span>/</span>
+          <span>200</span>
+          <button id="send">发布</button>
+        </div>
+      </div>
+      <div class="contentList">
+        <ul>
+          <li>
+            <!-- <div class="info">
+              <img class="userpic" src="./images/9.5/06.jpg" />
+              <span class="username">张良</span>
+              <p class="send-time">发布于 2022-4-7 15:12:23</p>
+            </div>
+            <div class="content">sdfdf</div>
+            <span class="the_del">X</span> -->
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      /* 
+      1 给发布按钮绑定点击事件 
+        1 生成一个li标签
+          1 给li添加属性和子元素 
+          2 获取文本域的内容 设置到对应的标签中 
+        2 插入到ul中 
+
+      2 给文本域绑定 input事件 
+        获取文字的长度 设置对应的标签上 文字个数标签上
+
+      3 给删除标签 绑定点击事件
+        1 获取它的父节点 parentNode 
+        2 让它父节点 删除自己 remove()
+       */
+      let dataArr = [
+        { uname: '司马懿', imgSrc: './images/9.5/01.jpg' },
+        { uname: '女娲', imgSrc: './images/9.5/02.jpg' },
+        { uname: '百里守约', imgSrc: './images/9.5/03.jpg' },
+        { uname: '亚瑟', imgSrc: './images/9.5/04.jpg' },
+        { uname: '虞姬', imgSrc: './images/9.5/05.jpg' },
+        { uname: '张良', imgSrc: './images/9.5/06.jpg' },
+        { uname: '安其拉', imgSrc: './images/9.5/07.jpg' },
+        { uname: '李白', imgSrc: './images/9.5/08.jpg' },
+        { uname: '阿珂', imgSrc: './images/9.5/09.jpg' },
+        { uname: '墨子', imgSrc: './images/9.5/10.jpg' },
+        { uname: '鲁班', imgSrc: './images/9.5/11.jpg' },
+        { uname: '嬴政', imgSrc: './images/9.5/12.jpg' },
+        { uname: '孙膑', imgSrc: './images/9.5/13.jpg' },
+        { uname: '周瑜', imgSrc: './images/9.5/14.jpg' },
+        { uname: '老夫子', imgSrc: './images/9.5/15.jpg' },
+        { uname: '狄仁杰', imgSrc: './images/9.5/16.jpg' },
+        { uname: '扁鹊', imgSrc: './images/9.5/17.jpg' },
+        { uname: '马可波罗', imgSrc: './images/9.5/18.jpg' },
+        { uname: '露娜', imgSrc: './images/9.5/19.jpg' },
+        { uname: '孙悟空', imgSrc: './images/9.5/20.jpg' },
+        { uname: '黄忠', imgSrc: './images/9.5/21.jpg' },
+        { uname: '百里玄策', imgSrc: './images/9.5/22.jpg' },
+      ];
+      // 1.获取元素
+      let textarea = document.querySelector('textarea')
+      let useCount = document.querySelector('.useCount')
+      let ul = document.querySelector('ul')
+      let area = document.querySelector('#area');
+      let send = document.querySelector('#send');
+      // 给发布按钮，绑定点击事件
+      send.addEventListener('click', function() {
+        // 获取到文本域的文本内容
+        let content = area.value
+        // 设置到一个新创建的li标签中
+        let li = document.createElement('li');
+        // 随机生成头像跟名称
+        let index = parseInt(Math.random() * dataArr.length);
+        function getFormaTime() {
+          // 发布时间
+          let date = new Date();
+              console.log(date);
+              let year = date.getFullYear()
+              let month = date.getMonth() + 1;
+              let date1 = date.getDate();
+              let hours = date.getHours();
+              let minute = date.getMinutes();
+              let second = date.getSeconds();
+              let times;
+              month = month < 10 ? '0' + month : month;
+              date1 = date1 < 10 ? '0' + date1 : date1;
+              hours = hours < 10 ? '0' + hours : hours;
+              minute = minute < 10 ? '0' + minute : minute;
+              second = second < 10 ? '0' + second : second;
+              return `${year}-${month}-${date1} ${hours}:${minute}:${second}`;
+        }
+        // 根据用户的输入生成li元素的内容
+        li.innerHTML = `<div class="info">
+                          <img class="userpic" src="${dataArr[index].imgSrc}" />
+                          <span class="username">${dataArr[index].uname}</span>
+                          <p class="send-time">发布于${getFormaTime()}</p>
+                        </div>
+                        <div class="content">${content}</div>
+                        <span class="the_del">X</span>`;
+        // 把新创建的li标签插入到ul中
+        ul.insertBefore(li, ul.children[0])
+        // 2.清空文本域的内容
+        area.value = '';
+        //  设置字体个数等于0
+        useCount.innerText = 0;
+        // 点击按钮，删除一条数据
+        let close1 = document.querySelector('.the_del');
+        close1.addEventListener('click', function() {
+          ul.removeChild(close1.parentNode)
+        })
+      })
+      // 为文本域添加内容改变的监听事件input
+      textarea.addEventListener('input', function() {
+        // 获取当前用户输入的内容的长度，赋值给useCount
+        useCount.innerText = textarea.value.trim().length
+      })
+    </script>
+  </body>
+</html>

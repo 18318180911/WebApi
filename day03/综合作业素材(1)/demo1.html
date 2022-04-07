@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="box w">
+        <div class="box-hd">
+          <h3>精品推荐</h3>
+          <a href="#">查看全部</a>
+        </div>
+        <div class="box-bd">
+          <ul class="clearfix">
+            <!-- <li>
+              <img src="images/course01.png" alt="" />
+              <h4>
+                Think PHP 5.0 博客系统实战项目演练
+              </h4>
+              <div class="info">
+                <span>高级</span> • <span>1125</span>人在学习
+              </div>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+      <script>
+          let ul = document.querySelector('.clearfix');
+          for (let index = 0; data < array.length; index++) {
+            //   const element = array[index];
+            let li = document.createElement('li');
+
+            let img = document.createElement('img');
+            img.src = data[index].src;
+
+            let h4 = document.createElement('h4');
+            h4.innerText = data[index].title;
+
+            let div = document.createElement('div')
+            div.classList.add('info');
+
+            let span1 = document.createElement('span1');
+            span1.innerText = '高级'
+
+            let span2 = document.createElement('span2');
+            span2.innerText = data[index].num;
+
+            let text1 = document.createTextNode(' • ');
+            let text2 = document.createTextNode('人在学习');
+
+            div.append(span1, text1, span2, text2);
+            li.append(img, h4, div);
+
+            ul.appendChild(li);
+
+          }
+
+      </script>
+      <script src="./data/data.js"></script>
+</body>
+</html>

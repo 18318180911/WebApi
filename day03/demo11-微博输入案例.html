@@ -70,23 +70,13 @@
                 return;
             }
             // 创建li标签
-             
-            // let  comment =
-            //     `<li>
-            //         <p>`+textarea.value+`</p>
-            //         <span>2022/2/2 下午17:00</span>
-            //     </li>`; 
-            // let u = document.querySelector(".box2 > ul")
-            // u.innerHTML += comment;
             let li = document.createElement('li')
-        
             li.innerHTML = textarea.value
             ul.appendChild(li)
-            textarea.value = null
+            textarea.value = null;
+            useCount.innerHTML = 0
             // console.log('获取成功')
         })
-
-
     </script>
 </body>
 </html>
