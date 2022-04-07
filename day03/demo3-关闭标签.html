@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            background-color: aqua;
+            padding: 20px;
+        }
+        li {
+            height: 30px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        let uls = document.querySelectorAll('ul');
+        
+        for (let index = 0; index < uls.length; index++) {
+            uls[index].addEventListener('click', function() {
+                for (let j = 0; j < this.children.length; j++) {
+                    this.children[j].style.display = 'none';
+                }
+                
+            });
+        }
+    </script>
+</body>
+</html>

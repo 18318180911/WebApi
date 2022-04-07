@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <img class="img1" src="./images/2.png" alt="">
+        <img class="img2" src="./images/1.png" alt="">
+    </div>
+    <div>
+        <img class="img1" src="./images/2.png" alt="">
+        <img class="img2" src="./images/1.png" alt="">
+    </div>
+    <div>
+        <img class="img1" src="./images/2.png" alt="">
+        <img class="img2" src="./images/1.png" alt="">
+    </div>
+    <script>
+        // 获取所有span
+        let img1s = document.querySelectorAll('.img1')
+        
+        // 遍历所有span,为每一个span绑定单击事件
+       /*  for (let index = 0; index < img1s.length; index++) {
+            img1s[index].addEventListener('click', function() {
+                this.parentNode.style.display = 'none';
+            }); 
+        } */
+        // 遍历所有span,为每一个span绑定单击事件
+        img1s.forEach(function(ele, index) {
+          ele.addEventListener('click', function() {
+            // 关闭是的当前ele的父元素
+            // parentNode可以找到当前元素最近的一级父元素
+            ele.parentNode.style.display = 'none'
+          })
+        })
+      </script>
+</body>
+</html>

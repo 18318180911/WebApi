@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="left">
+        <li>小龙虾</li>
+        <li>苹果</li>
+        <li>草莓</li>
+        <li>小酥肉</li>
+        <li>大鸡腿</li>
+    </ul>
+    <ul class="right"></ul>
+    <script>
+        let li = document.querySelectorAll('li');
+        let rightUl = document.querySelector('.right');
+        for (let index = 0; index < li.length; index++) {
+            li[index].addEventListener('click', function() {
+                rightUl.appendChild(li[index]);
+            })
+        }      
+    </script>
+</body>
+</html>

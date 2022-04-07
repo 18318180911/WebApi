@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+    </ul>
+    <script>
+        // 创建节点
+        let li = document.createElement('li');
+        li.innerText="新加入的li标签";
+        li.style.backgroundColor = 'pink'
+        // 插入节点
+        let ul = document.querySelector('ul');
+        // 把li标签加入到ul中，是追加在ul底部开始追加
+        ul.appendChild(li)
+    </script>
+</body>
+</html>

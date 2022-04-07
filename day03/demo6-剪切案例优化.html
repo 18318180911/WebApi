@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="left">
+        <li>小龙虾</li>
+        <li>苹果</li>
+        <li>草莓</li>
+        <li>小酥肉</li>
+        <li>大鸡腿</li>
+    </ul>
+    <ul class="right"></ul>
+    <script>
+        let lis = document.querySelectorAll('li');
+        let right = document.querySelector('.right');
+        let left = document.querySelector('.left');
+
+        let parent;
+        for (let index = 0; index < lis.length; index++) {
+            lis[index].addEventListener('click', function() {
+                if (right.children.length === 0) {
+                    parent = right
+                }
+                if (left.children.length === 0) {
+                    parent = left
+                }
+                parent.appendChild(this);
+            })
+        }      
+    </script>
+</body>
+</html>
