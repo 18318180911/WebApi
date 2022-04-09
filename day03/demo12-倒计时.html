@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .countdown {
+        width: 240px;
+        height: 305px;
+        text-align: center;
+        line-height: 1;
+        color: #fff;
+        background-color: brown;
+        /* background-size: 240px; */
+        /* float: left; */
+        overflow: hidden;
+      }
+
+      .countdown .next {
+        font-size: 16px;
+        margin: 25px 0 14px;
+      }
+
+      .countdown .title {
+        font-size: 33px;
+      }
+
+      .countdown .tips {
+        margin-top: 80px;
+        font-size: 23px;
+      }
+
+      .countdown small {
+        font-size: 17px;
+      }
+
+      .countdown .clock {
+        width: 142px;
+        margin: 18px auto 0;
+        overflow: hidden;
+      }
+
+      .countdown .clock span,
+      .countdown .clock i {
+        display: block;
+        text-align: center;
+        line-height: 34px;
+        font-size: 23px;
+        float: left;
+      }
+
+      .countdown .clock span {
+        width: 34px;
+        height: 34px;
+        border-radius: 2px;
+        background-color: #303430;
+      }
+
+      .countdown .clock i {
+        width: 20px;
+        font-style: normal;
+      }
+    </style>
+</head>
+<body>
+    <div class="countdown">
+        <p class="next">今天是2021年8月28日</p>
+        <p class="title">下班倒计时</p>
+        <p class="clock">
+          <span id="hour">00</span>
+          <i>:</i>
+          <span id="minutes">00</span>
+          <i>:</i>
+          <span id="scond">00</span>
+        </p>
+        <p class="tips">
+          现在是18:30:00
+        </p>
+    </div>
+    <script>
+        // let day = document.querySelector('next');
+        let hour = document.querySelector('#hour');
+        let minutes = document.querySelector('#minutes');
+        let second = document.querySelector('#scond');
+        let ti = setInterval(function() {
+            let countDown = parseInt((+new Date('2022-4-8 22:16:00') - Date.now()) / 1000);
+            // console.log(countDown);
+            // let d = parseInt(countDown)
+            // d = d < 10 ? '0' + d : h;
+            if(countDown < 0) {
+                countDown = 0;
+            }
+            // 获取小时
+            let h = parseInt(countDown / 60 / 60);
+            h = h < 10 ? '0' + h : h;
+            // 获取分钟
+            let m = parseInt((countDown % 3600) / 60);
+            m = m < 10 ? '0' + m : m;
+            // 获取秒
+            let s = parseInt(countDown % 60);
+            s = s < 10 ? '0' + s : s;
+            // console.log(h, m, s)
+            hour.innerHTML = h;
+            minutes.innerHTML = m;
+            second.innerHTML = s;
+            if(countDown <= 0) {
+                clearInterval(ti)
+            }
+        }, 1000);
+        
+    </script>
+</body>
+</html>
