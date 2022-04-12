@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no"
+    />
+    <title>05-阻止默认行为.html</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+      }
+      .menu {
+        list-style: none;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 150px;
+        position: fixed;
+
+        display: none;
+      }
+      li {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+      li:hover {
+        background-color: skyblue;
+        color: #fff;
+        cursor: pointer;
+      }
+      li:last-child {
+        border-bottom: none;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="menu">
+      <li>添加图标</li>
+      <li>切换壁纸</li>
+      <li>下载壁纸</li>
+      <li>设置</li>
+    </ul>
+    <script>
+      const menu = document.querySelector('.menu');
+      // 不可能把一个技术的使用场景全部 讲解完毕
+      // let 使用场景
+      // 数组的使用场景
+      // 定时器的使用场景
+      // 函数的使用场景
+      // Math对象的使用场景
+      // 钱的使用场景
+
+      // 鼠标右键不要弹出 默认的菜单
+
+      // 绑定鼠标右键事件 在 阻止默认行为
+      // contextmenu 鼠标右键
+      document.body.addEventListener('contextmenu', function (event) {
+        event.preventDefault();
+        // 坐标
+        const left = event.clientX;
+        const top = event.clientY;
+
+        menu.style.display = 'block';
+        menu.style.left = left + 'px';
+        menu.style.top = top + 'px';
+      });
+      document.body.addEventListener('click', function () {
+        menu.style.display = 'none';
+      });
+    </script>
+  </body>
+</html>

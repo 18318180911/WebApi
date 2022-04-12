@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        header {
+          height: 250px;
+          background-color: yellow;
+        }
+        nav {
+          background-color: orange;
+          height: 150px;
+        }
+        .fixed {
+          position: fixed;
+          left: 0;
+          top: 0;
+          width: 100%;
+        }
+        div {
+          /* height: 150vh; */
+          background-color: aqua;
+        }
+      </style>
+</head>
+<body>
+    <header></header>
+    <nav></nav>
+    <div>
+        <h1>1</h1>
+        <h1>2</h1>
+        <h1>3</h1>
+        <h1>4</h1>
+        <h1>5</h1>
+        <h1>6</h1>
+        <h1>7</h1>
+        <h1>8</h1>
+        <h1>9</h1>
+        <h1>10</h1>
+        <h1>11</h1>
+        <h1>12</h1>
+        <h1>13</h1>
+        <h1>14</h1>
+        <h1>15</h1>
+        <h1>16</h1>
+        <h1>17</h1>
+        <h1>18</h1>
+        <h1>19</h1>
+        <h1>20</h1>
+    </div>
+    <script>
+        const nav = document.querySelector('nav');
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', function () {
+            const scrollTop = document.documentElement.scrollTop;
+            if (scrollTop >= 250) {
+                nav.classList.add('fixed');
+                header.style.marginBottom = 150 + 'px';
+            } else {
+                nav.classList.remove('fixed');
+                header.style.marginBottom = 0;
+            }
+        })
+    </script>
+</body>
+</html>

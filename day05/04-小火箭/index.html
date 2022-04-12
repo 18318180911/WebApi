@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      body {
+        height: 8000px;
+        background-image: linear-gradient(red, blue);
+      }
+
+      a {
+        color: #fff;
+      }
+
+      .actGotop {
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+        width: 150px;
+        height: 195px;
+        display: none;
+        z-index: 100;
+      }
+
+      .actGotop a,
+      .actGotop a:link {
+        width: 150px;
+        height: 195px;
+        display: inline-block;
+        background: url(images/gotop.png) no-repeat;
+        outline: none;
+      }
+
+      .actGotop a:hover {
+        width: 150px;
+        height: 195px;
+        background: url(images/gotop.gif) no-repeat;
+        outline: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 返回顶部小火箭 -->
+    <div class="actGotop"><a href="javascript:;" title="Top"></a></div>
+
+    <!-- 需求：
+    1.滚动出屏幕的距离超过1000的时候，出现小火箭
+    2.单击小火箭能够返回到顶部 -->
+
+    <script>
+      window.addEventListener('load', function() {
+        // 获取元素
+        let actGotop = document.querySelector('.actGotop')
+        // 为小火箭添加单击事件
+        actGotop.addEventListener('click', function() {
+          // 回到顶部
+          document.documentElement.scrollTop = 0
+        })
+
+        // 监听页面滚动
+        window.addEventListener('scroll', function() {
+          // 获取页面滚动出屏幕的距离
+          let top = document.documentElement.scrollTop
+          // 判断卷出的距离是否大于 2000
+          if (top >= 2000) {
+            // 让小火箭出现
+            actGotop.style.display = 'block'
+          } else {
+            // 让小火箭隐藏
+            actGotop.style.display = 'none'
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

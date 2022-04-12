@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 300px;
+            height: 200px;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .a {
+            background-color: pink;
+        }
+        .b {
+            background-color: aqua;
+        }
+        .c {
+            background-color: yellow;
+        }
+        p {
+        width: 200px;
+        height: 200px;
+        background-color: yellow;
+      }
+    </style>
+</head>
+<body>
+    <p>1</p>
+    <div class="a">1
+        <div class="b">2
+            <div class="c">3</div>
+        </div>
+    </div>
+    <script>
+        const p = document.querySelector('p')
+        const a = document.querySelector('.a');
+        a.addEventListener('click', function() {
+            p.style.borderColor = 'pink';
+            p.innerText = +p.innerText + 1;
+            console.log('1');
+        }
+        );
+        const b = document.querySelector('.b');
+        b.addEventListener('click', function() {
+            p.style.borderColor = 'aqua';
+            p.innerText = +p.innerText + 10;
+            console.log('2');
+            event.stopPropagation();
+        }
+        );
+        const c = document.querySelector('.c');
+        c.addEventListener('click', function() {
+            p.style.borderColor = 'yellow';
+            p.innerText = +p.innerText + 100;
+            console.log('3');
+            event.stopPropagation();
+        }
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no"
+    />
+    <title>15-小火箭导航.html</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 200vh;
+        background-image: linear-gradient(black, red, blue, green);
+      }
+      a {
+        width: 150px;
+        height: 195px;
+        position: fixed;
+        bottom: 100px;
+        right: 50px;
+        background-image: url(./images/gotop.png);
+        /* display: none; */
+      }
+      a:hover {
+        background-image: url(./images/gotop.gif);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <a href="#"></a> -->
+    <a href="javascript:;"></a>
+    <script>
+      /* 
+      步骤：
+      1 设置页面的高度 200vh  设置渐变色
+      2 先完成静态结构
+        1 定位 右下角 火箭图片
+        2 鼠标移上去 火箭图片切换- 会动的火箭图片
+      3 页面滚动到一定的距离  1500
+        让小火箭显示出来
+        否则 小火箭就隐藏
+       */
+
+      const a = document.querySelector('a');
+
+      window.addEventListener('scroll', function () {
+        //  获取页面滚动的距离
+        const scrollTop = document.documentElement.scrollTop;
+        if (scrollTop > 1200) {
+          // 显示火箭
+          a.style.display = 'block';
+        } else {
+          // 隐藏
+          a.style.display = 'none';
+        }
+      });
+
+      a.addEventListener("click",function () {
+        document.documentElement.scrollTop=0;
+      })
+    </script>
+  </body>
+</html>

@@ -65,6 +65,12 @@
             let str_length = textarea.value.length
             span1.innerHTML = str_length
         })
+        // 按下Enter发布微博
+        area.addEventListener('keyup', function(e) {
+            if (e.key == 'Enter') {
+            button.click();
+            }
+        })
         button.addEventListener('click', function() {
             let str_length = textarea.value.length
             if(str_length < 1 || str_length > 200) {
@@ -73,7 +79,8 @@
             let li = document.createElement('li')
             li.innerHTML = textarea.value
             ul.appendChild(li)
-            textarea.value = null
+            textarea.value = null;
+            span1.innerText = 0;
         })
     </script>
 </body>

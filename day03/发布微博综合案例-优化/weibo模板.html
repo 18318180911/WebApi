@@ -96,6 +96,12 @@
       let ul = document.querySelector('ul')
       let area = document.querySelector('#area');
       let send = document.querySelector('#send');
+      // 按下Enter发布微博
+      area.addEventListener('keyup', function(e) {
+        if (e.key == 'Enter') {
+          send.click();
+        }
+      })
       // 给发布按钮，绑定点击事件
       send.addEventListener('click', function() {
         // 获取到文本域的文本内容

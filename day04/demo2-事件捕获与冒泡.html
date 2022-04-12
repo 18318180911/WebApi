@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 300px;
+            height: 200px;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .a {
+            background-color: pink;
+        }
+        .b {
+            background-color: aqua;
+        }
+        .c {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="a">1
+        <div class="b">2
+            <div class="c">3</div>
+        </div>
+    </div>
+    <script>
+        const a = document.querySelector('.a');
+        a.addEventListener('click', function() {
+            console.log('1');
+        },
+        true
+        );
+        const b = document.querySelector('.b');
+        b.addEventListener('click', function() {
+            console.log('2');
+        },
+        false
+        );
+        const c = document.querySelector('.c');
+        c.addEventListener('click', function() {
+            console.log('3');
+        },
+        false
+        );
+    </script>
+</body>
+</html>

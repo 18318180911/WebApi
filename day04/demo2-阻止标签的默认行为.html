@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="http://www.naidu.com">百度</a>
+    <form action="">
+        <button type="button">点击会自动刷新</button>
+        <input type="button" value="点击">
+    </form>
+    <button>刷新</button>
+    <script>
+        /* 
+      1 a标签的点击跳转
+      2 form表单中button点击刷新行为
+        1 阻止默认行为 - form表单 有一个 submit 事件 理解提交表单的触发-点击按钮的时候触发
+        2 给button按钮绑定点击事件 也去阻止试试
+        3 给button按钮 添加一个 type="button" 属性 
+        4 换成 input标签 type="button"
+        5 把button 移出form表单的区域 
+
+      使用新技术 阻止标签默认行为 
+       */
+      const a = document.querySelector('a');
+      const form = document.querySelector('form');
+      const button = document.querySelector('button');
+      a.addEventListener('click', function(e) {
+          console.log('a标签触发');
+          // 阻止a标签的默认行为，让他不要跳转
+          e.preventDefault()
+      })
+      // form.addEventListener("submit",function (event) {
+      //   // 不要让页面再刷新
+      //   event.preventDefault();
+      // })
+
+      // button.addEventListener("click",function (event) {
+      //   event.preventDefault();  // 不要让页面再刷新
+      // })
+    </script>
+</body>
+</html>

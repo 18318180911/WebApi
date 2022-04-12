@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>08-综合案例-模版</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      a {
+        text-decoration: none;
+        color: #721c24;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin: 20px 0;
+      }
+      table {
+        margin: 0 auto;
+        width: 800px;
+        border-collapse: collapse;
+        color: #004085;
+      }
+      th {
+        padding: 10px;
+        background: #cfe5ff;
+
+        font-size: 20px;
+        font-weight: 400;
+      }
+      td,
+      th {
+        border: 1px solid #b8daff;
+      }
+      td {
+        padding: 10px;
+        color: #666;
+        text-align: center;
+        font-size: 16px;
+      }
+      tbody tr {
+        background: #fff;
+      }
+      tbody tr:hover {
+        background: #e1ecf8;
+      }
+      .info {
+        width: 900px;
+        margin: 50px auto;
+        text-align: center;
+      }
+      .info input {
+        width: 80px;
+        height: 25px;
+        outline: none;
+        border-radius: 5px;
+        border: 1px solid #b8daff;
+        padding-left: 5px;
+      }
+      .info button {
+        width: 60px;
+        height: 25px;
+        background-color: #004085;
+        outline: none;
+        border: 0;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      .info .age {
+        width: 50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>新增学员</h1>
+    <div class="info">
+      姓名：<input type="text" class="uname" /> 年龄：<input
+        type="text"
+        class="age"
+      />
+      性别:
+      <select name="gender" id="" class="gender">
+        <option value="男">男</option>
+        <option value="女">女</option>
+      </select>
+      薪资：<input type="text" class="salary" /> 就业城市：<select
+        name="city"
+        id=""
+        class="city"
+      >
+        <option value="北京">北京</option>
+        <option value="上海">上海</option>
+        <option value="广州">广州</option>
+        <option value="深圳">深圳</option>
+        <option value="曹县">曹县</option>
+      </select>
+      <button class="add">录入</button>
+    </div>
+
+    <h1>就业榜</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>学号</th>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>性别</th>
+          <th>薪资</th>
+          <th>就业城市</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr>
+          <td>1</td>
+          <td>这是名称</td>
+          <td>这是年龄</td>
+          <td>这是性别</td>
+          <td>这是工资</td>
+          <td>这是所在城市</td>
+          <td>
+            <a href="javascript:" class="del">删除</a>
+          </td>
+        </tr> -->
+      </tbody>
+    </table>
+    <script>
+        let arr = [
+            {
+                stuId: 1001,
+                uname: '欧阳霸天',
+                age: 19,
+                gender: '男',
+                salary: '20000',
+                city: '上海'
+            },
+            {
+                stuId: 1002,
+                uname: '令狐霸天',
+                age: 29,
+                gender: '男',
+                salary: '20000',
+                city: '上海'
+            },
+            {
+                stuId: 1003,
+                uname: '诸葛霸天',
+                age: 39,
+                gender: '男',
+                salary: '20000',
+                city: '上海'
+            }
+        ]
+        let tbody = document.querySelector('tbody');
+        let add = document.querySelector('.add')
+        // 以后我们要的是表单元素的值--value属性
+        let unameEle = document.querySelector('.uname')
+        let ageEle = document.querySelector('.age')
+        let genderEle = document.querySelector('.gender')
+        let salaryEle = document.querySelector('.salary')
+        let cityEle = document.querySelector('.city')
+        function add1() {
+            let htmlStr = '';
+            arr.forEach(function(item, index) {
+                htmlStr += `<tr>
+                            <td>${index + 1}</td>
+                            <td>${item.uname}</td>
+                            <td>${item.age}</td>
+                            <td>${item.gender}</td>
+                            <td>${item.salary}</td>
+                            <td>${item.city}</td>
+                            <td>
+                                <a href="javascript:" class="del">删除</a>
+                            </td>
+                            </tr>`
+            })
+            // for (let index = 0; index < arr.length; index++) {
+            //     htmlStr += `<tr>
+            //                     <td>${arr[index].stuId}</td>
+            //                     <td>${arr[index].uname}</td>
+            //                     <td>${arr[index].age}</td>
+            //                     <td>${arr[index].gender}</td>
+            //                     <td>${arr[index].salary}</td>
+            //                     <td>${arr[index].city}</td>
+            //                     <td>
+            //                         <a href="javascript:" class="del">删除</a>
+            //                     </td>
+            //                 </tr>`
+                
+            // }
+        tbody.innerHTML = htmlStr
+        }
+        add1();
+
+        // 添加        
+        add.addEventListener('click', function() {
+            // 1.收集数据，生成一个对象
+            let obj = {
+            // 获取最后一个数据对象的stuId + 1,如果没有数据，id直接赋值为1001
+            stuId: arr.length > 0 ? arr[arr.length - 1].stuId + 1 : 1001,
+            // 获取表单元素的值，单击按钮之后再取值
+            uname: unameEle.value,
+            age: ageEle.value,
+            gender: genderEle.value,
+            salary: salaryEle.value,
+            city: cityEle.value
+            }
+            // 2.将生成的对象添加到数组
+            arr.push(obj)
+            // 3.渲染
+            add1()
+        })
+        // 删除
+        tbody.addEventListener('click', function(e) {
+            // console.log(e)
+            //下面是获取点击元素所在的tr在table中是第几个tr, target_tr 你点击的那个tr, target_parent是target_tr的父节点
+            let tr = document.querySelector('tr')
+            let tbody = document.querySelector('tbody')
+            let target_index = 0;
+            for(let i = 0; i<tbody.length; i++) {
+                if(tbody.tr[i] == tr) {
+                    target_index = i;
+                }
+            }
+            //根据我们点击的tr的索引位置进行删除
+            if(e.target.className == 'del') {
+                arr.splice(target_index,1)
+                add1();
+            }
+        })
+    </script>
+  </body>
+</html>
