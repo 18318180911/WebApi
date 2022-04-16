@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a data-index="0" id="nav" href="http://www.baidu.com" hello="no" aa="bb" >跳转</a >
+    <script>
+        // 获取 dom元素的固有属性  通过点语法来获取
+      const a = document.querySelector('a');
+      // 获取固有属性
+      // console.log(a.href);
+      // console.log(a.id);
+
+      // 直接修改
+      // a.href="http://www.qq.com";
+      // a.id="top";
+
+      // 自定义属性 不能直接通过点语法来获取和设置
+      // 获取 getAttribute("属性名")
+      // console.log(a.hello);
+      // console.log(a.aa);
+      // console.log( a.getAttribute("hello") );
+      // console.log( a.getAttribute("aa") );
+
+      // 设置 setAttribute(key,value)
+      // a.setAttribute("hello","123");
+
+      // 删除掉属性 removeAttribute(key)
+      // a.removeAttribute("hello");
+
+      //  自定义属性 -> h5建议的 自定义属性
+      // 属性的时候 data-xxx 开头
+      //  获取的时候  a.dataset.xxx
+      //  设置  a.dataset.index = 3;
+
+      // console.log(a.dataset.index);
+      // a.dataset.index = 3;
+
+      /* 
+      
+      小结 
+      标签的属性 有两种分为
+      1 固有属性  比如 id href src     点语法的方式获取和设置 方便
+      2 自定义属性
+        1 随机自己瞎命名  
+          <a  abc="123" >  
+            获取 （getAttribute） 设置 setAttribute(key,value)  删除   removeAttribute(key)
+        2 h5建议 data- xxx
+          <a  data-abc="123" >  
+            获取（a.dataset.abc）  设置（a.dataset.abc=456）;
+      3 最强大是  （getAttribute）  setAttribute removeAttribute 
+            上述的这个方式，可以获取到任意的属性（固有属性和h5建议的自定义属性）
+            <a data-index="0" id="nav" href="http://www.baidu.com" hello="no" aa="bb" >跳转</a >
+      */
+    //  console.log( a.getAttribute("data-index") );
+    //  console.log( a.getAttribute("id") );
+    //  console.log( a.getAttribute("href") );
+    //  console.log( a.getAttribute("hello") );
+    //  console.log( a.getAttribute("aa") );
+    </script>
+</body>
+</html>

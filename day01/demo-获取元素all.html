@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <span>12222</span>
+    <span>44444444</span>
+    <a href="" class="aa">aaa</a>
+    <h2 id="h2">h2h2</h2>
+    <ul class="nav">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        // let spans = document.querySelectorAll('span')
+        // console.log(spans)
+        // for (let index = 0; index < spans.length; index++) {
+        //     // console.log(spans[i])
+        //     spans[index].style.color = 'red'
+        // }
+        // 获取一个父容器再获取这个容器里面的子元素
+        let nav = document.querySelector('.nav');
+        // 只会查找nav这个结构
+        let lis = nav.querySelectorAll('li');
+        console.log(nav);
+        console.log(lis);
+    </script>
+</body>
+</html>

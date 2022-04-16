@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点击</button>
+    <script>
+        const btn = document.querySelector('button');
+        // 普通函数
+        function func() {
+            console.log('hellow');
+        }
+        function fun1() {
+            console.log('fun1');
+        }
+        // 绑定事件
+        btn.addEventListener('click', func);
+        // 绑定多个同名事件
+        btn.addEventListener('click', fun1);
+        //
+        setTimeout(function() {
+            // 取消绑定事件
+            btn.removeEventListener('click', func);
+        }, 1000);
+    </script>
+</body>
+</html>

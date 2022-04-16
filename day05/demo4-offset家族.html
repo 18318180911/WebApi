@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: aqua;
+        }
+        .offset {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>标题</h1>
+        <div class="offset"></div>
+    </div>
+    <script>
+        let offsetDom = document.querySelector('.offset');
+        // 获取宽高度，包含滚动条
+        console.log(offsetDom.offsetWidth);
+        console.log(offsetDom.offsetHeight);
+        // 获取当前元素距离 定位了的父元素的大小(找不到定位了的父元素，相对于页面来计算)
+        console.log(offsetDom.offsetTop);
+        console.log(offsetDom.offsetLeft);
+    </script>
+</body>
+</html>

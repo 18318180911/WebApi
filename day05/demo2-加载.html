@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>1</h1>
+    <video src="https://upos-sz-mirrorcos.bilivideo.com/upgcxcode/36/82/569828236/569828236-1-16.mp4?e=ig8euxZM2rNcNbRVhwdVhwdlhWdVhwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=&uipk=5&nbs=1&deadline=1649906485&gen=playurlv2&os=cosbv&oi=2028708454&trid=926e1b0362e4450296eda32f1f091968h&platform=html5&upsig=de4859a796154f0ae2152c7a97789a6d&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,platform&mid=414874315&bvc=vod&nettype=0&bw=52793&logo=80000000"
+    ></video>
+    <script>
+      /* 
+      有很多业务和功能 都需要使用到外部资源（外部css js 图片 视频）
+      我们希望等待资源都加载回来，才去做其他事情
+      写代码的时候，我们会把所有的代码 都写在  window load事件中来确保 资源全部都可以使用 
+       */
+      window.addEventListener('load', function () {
+        console.log('load 标签加载完毕-标签对应外部资源加载完毕');
+      });
+      // DOMContentLoaded 
+      // 页面的标签 都加载完毕就触发了，不需要等待标签的内容回来
+      // video标签一生成， 事件就触发 
+      // load事件等待 vide标签生成了，同时 video标签内的视频也加载回来 才触发 
+
+      // video加载 分两部
+      // 只是加载标签而已 很快 DOMContentLoaded    快
+      // 会去加载 标签对应的视频 比较慢  load 慢
+    //   document.addEventListener("DOMContentLoaded",function () {
+    //     console.log("DOMContentLoaded 标签加载完毕就触发了");
+    //   })
+    </script>
+  </body>
+</html>

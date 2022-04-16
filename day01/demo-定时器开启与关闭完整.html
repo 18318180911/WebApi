@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="btn1">开始</button>
+    <button class="btn2">关闭</button>
+    <span>10</span>
+    <script>
+        let btn1 = document.querySelector('.btn1');
+        let btn2 = document.querySelector('.btn2');
+        let span = document.querySelector('span');
+        let count = 11;
+        let times;
+        function add() {
+            times = setInterval(function() {
+                count--
+                span.innerText = count;
+                if(count == 0) {
+                    count = 11;
+                    clearInterval(times);
+                }
+            }, 1000)
+        }
+        add()
+        btn1.addEventListener('click', function() {
+            clearInterval(times);
+           add();
+        })
+        btn2.addEventListener('click', function() {
+            clearInterval(times);
+        })
+    </script>
+</body>
+</html>

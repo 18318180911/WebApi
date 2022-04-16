@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            display: block;
+            width: 100px;
+            height: 30px;
+            margin-top: 60px;
+            text-align: center;
+            line-height: 30px;
+            border: 1px solid pink;
+        }
+    </style>
+</head>
+<body>
+    <button>点名</button>
+    <span>hell</span>
+    <script>
+        let names = ['大耳朵图图', '懒洋洋', '灰太狼', '蓝精灵'];
+        // 获得元素
+        let button = document.querySelector('button');
+        let span = document.querySelector('span');
+        // 点击事件
+        button.addEventListener('click', function() {
+            // 随机点名
+            let index = parseInt(Math.random() * names.length);
+            // 将随机名字放入span标签在页面中显示
+            span.innerText = names[index];
+        })
+    </script>
+</body>
+</html>

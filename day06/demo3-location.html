@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点击</button>
+    <script>
+        const button = document.querySelector('button');
+        button.addEventListener('click', function() {
+            // 使用a标签href属性可以实现页面跳转
+            // 在js中，使用cocation.href实现直接跳转
+            // location.href = 'http://www.baidu.com';
+            // 强制刷新
+            // location.reload(true)
+            //刷新功能
+            // location.href = location.href
+            // console.log(location.href);
+            // search获取地址上？后面一串字符/17-location.html，不包括?号           
+            location.href = 'http://127.0.0.1:5500/17-location.html?a=1&b=2';
+            console.log(location.search);
+            // hash vue运用会获取到#后面一串字符串包括#号
+            // location.href = 'http://127.0.0.1:5500/17-location.html#indes';
+            // console.log(location.hash);         
+            
+        })
+        // 延时5秒再跳转，类似于广告
+        setTimeout(function() {
+            // location.href = 'http://www.baidu.com'
+        }, 5000)
+    </script>
+</body>
+</html>

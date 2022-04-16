@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="color">
+    <script>
+        // 代码重新执行，页面刷新
+        document.body.style.backgroundColor = localStorage.getItem('bgcolor');
+        const color = document.querySelector('input');
+        color.addEventListener('change', function() {
+            document.body.style.backgroundColor = this.value;
+            // 把颜色存储到本地中
+            localStorage.setItem('bgcolor', this.value);
+        })
+    </script>
+</body>
+</html>

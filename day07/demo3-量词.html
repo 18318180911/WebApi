@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // // *重复0次或更多次
+        // console.log(/^哈*$/.test('')); // true
+        // console.log(/^哈*$/.test('哈')); // true
+        // console.log(/^哈*$/.test('哈哈哈')); // true
+        // // +至少重复1次或更多次
+        // console.log(/^嘿+$/.test('')); // false
+        // console.log(/^嘿+$/.test('嘿嘿')); // true
+        // console.log(/^嘿+$/.test('嘿嘿嘿')); // true
+        // // ?重复0次或1次
+        // console.log(/^呵?$/.test('')); // true
+        // console.log(/^呵?$/.test('呵')); // true
+        // console.log(/^呵?$/.test('呵呵')); // false
+        // // {n}重复n次
+        // console.log(/^哈{2}}$/.test('')); // false
+        // console.log(/^哈{2}$/.test('哈')); // false
+        // console.log(/^哈{2}$/.test('哈哈')); // true
+        // console.log(/^哈{2}$/.test('哈哈哈')); // false
+        // {n,}重复>=n次
+        // console.log(/^哈{2,}}$/.test('')); // false
+        // console.log(/^哈{2,}$/.test('哈')); // false
+        // console.log(/^哈{2,}$/.test('哈哈')); // true
+        // console.log(/^哈{2,}$/.test('哈哈哈')); // true
+        // {n,m}重复>=n,<=m次,逗号左右不能有空格
+        console.log(/^哈{2,4}}$/.test('')); // false
+        console.log(/^哈{2,4}$/.test('哈')); // false
+        console.log(/^哈{2,4}$/.test('哈哈')); // true
+        console.log(/^哈{2,4}$/.test('哈哈哈')); // true
+        console.log(/^哈{2,4}$/.test('哈哈哈哈')); // true
+    </script>
+</body>
+</html>

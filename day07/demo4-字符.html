@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // \d表示0-9任意一数字
+        // console.log(/\d/.test('呵呵')); // false
+        // console.log(/\d/.test('呵呵1'));  // true
+        // \D表示字符不全是0-9的数字
+        // console.log(/\D/.test('123')); // false
+        // console.log(/\D/.test('56哈')); // true
+        // console.log(/\D/.test('123A')); // true
+        // console.log(/\D/.test('123a')); // true
+        
+        // w表示匹配任意字母数字下划线
+        // console.log(/\w/.test('呵呵'));
+        // console.log(/\w/.test('呵呵_'));
+        // console.log(/\w/.test('a'));
+        // console.log(/\w/.test('A'));
+        // console.log(/\w/.test('%a'));
+        // console.log(/\w/.test('#A'));
+        // \W表示除了字母数字和下划线以外
+        // console.log(/\W/.test('呵呵'));
+        // console.log(/\W/.test('呵呵_'));
+        // console.log(/\W/.test('a'));
+        // console.log(/\W/.test('A'));
+        // console.log(/\W/.test('%a'));
+        // console.log(/\W/.test('#A'));
+        
+        // s表示匹配空格，换行符，制表符(\t\r\n\v\f)
+        console.log(/\s/.test('呵 呵'));
+        console.log(/\s/.test('呵呵_'));
+        console.log(/\s/.test('a'));
+        console.log(/\s/.test('A'));
+        console.log(/\s/.test('%a'));
+        console.log(/\s/.test('#A'));
+    </script>
+</body>
+</html>

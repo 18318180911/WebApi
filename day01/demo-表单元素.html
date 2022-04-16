@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input class="pass" type="password"><button class="toggleText">点击</button>
+    <br />
+    <input type="checkbox" class="chkAll">全选
+    <div class="listChks">
+        <input type="checkbox">1</input>
+        <input type="checkbox">2</input>
+        <input type="checkbox">3</input>
+    </div>
+    <button class="getChioce">获取用户选择</button>
+    <script>
+        let toggleText = document.querySelector('.toggleText');
+        let chkAll = document.querySelector('.chkAll');
+        let pass = document.querySelector('.pass');
+        toggleText.addEventListener('click', function() {
+            pass.type == 'text' ? (pass.type = 'password') : (pass.type = 'text')
+        })
+        let listChks = document.querySelectorAll('.listChks > input');
+        chkAll.addEventListener('click', function () {
+            // 获取当前全选复选框的选中状态
+            let chkState = chkAll.checked;
+            // 遍历三个复选框
+            for (let i = 0; i < listChks.length; i++) {
+                // 为下面每一个复选框设置选中状态
+                listChks[i].checked = chkState
+            }
+        })
+    </script>
+</body>
+</html>

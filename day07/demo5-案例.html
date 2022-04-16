@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+            border: 1px solid pink;
+        }
+        #input1 {
+            margin-top: 50px;
+            margin-left:10px;
+        }
+        #input2 {
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        .button {
+            margin-left: 60px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="username" name="" id="input1" placeholder="用户名">
+        <input type="password" name="" id="input2" placeholder="密码">
+        <button class="button">提交</button>
+    </div>
+    <script>
+        // console.log(/^[a-zA-Z_]\w{5,11}$/.test('_235678A0w_1'))
+        // console.log(/^[a-zA-Z0-9_ ]{6,12}$/.test('fS 12'))
+        let ipt1 = document.querySelector('#input1');
+        let ipt2 = document.querySelector('#input2');
+        let button = document.querySelector('.button');
+        button.addEventListener('click', function() {
+            // 正则：第一个开头字母或者下划线，其他数字，字母，下划线，长度6-12
+            let reg1 = /^[a-zA-Z_]\w{5,11}$/;
+            // 判断是否合法
+            if(!reg1.test(ipt1.value)){
+                alert('用户名输入不正确');
+                ipt1.focus()
+                return
+            }
+            // 正则：任意字符，空格，长度6-12
+            let reg2 = /^[a-zA-Z0-9_ ]{6,12}$/;
+            // 判断是否合法
+            if(!reg2.test(ipt2.value)){
+                alert('密码输入不正确');
+                ipt2.focus()
+                return
+            }
+            alert('提交成功');
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>08-综合案例-模版</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      a {
+        text-decoration: none;
+        color: #721c24;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin: 20px 0;
+      }
+      table {
+        margin: 0 auto;
+        width: 800px;
+        border-collapse: collapse;
+        color: #004085;
+      }
+      th {
+        padding: 10px;
+        background: #cfe5ff;
+
+        font-size: 20px;
+        font-weight: 400;
+      }
+      td,
+      th {
+        border: 1px solid #b8daff;
+      }
+      td {
+        padding: 10px;
+        color: #666;
+        text-align: center;
+        font-size: 16px;
+      }
+      tbody tr {
+        background: #fff;
+      }
+      tbody tr:hover {
+        background: #e1ecf8;
+      }
+      .info {
+        width: 900px;
+        margin: 50px auto;
+        text-align: center;
+      }
+      .info input {
+        width: 80px;
+        height: 25px;
+        outline: none;
+        border-radius: 5px;
+        border: 1px solid #b8daff;
+        padding-left: 5px;
+      }
+      .info button {
+        width: 60px;
+        height: 25px;
+        background-color: #004085;
+        outline: none;
+        border: 0;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      .info .age {
+        width: 50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>新增学员</h1>
+    <div class="info">
+      姓名：<input type="text" class="uname" /> 年龄：<input
+        type="text"
+        class="age"
+      />
+      性别:
+      <select name="gender" id="" class="gender">
+        <option value="男">男</option>
+        <option value="女">女</option>
+      </select>
+      薪资：<input type="text" class="salary" /> 就业城市：<select
+        name="city"
+        id=""
+        class="city"
+      >
+        <option value="北京">北京</option>
+        <option value="上海">上海</option>
+        <option value="广州">广州</option>
+        <option value="深圳">深圳</option>
+        <option value="曹县">曹县</option>
+      </select>
+      <button class="add">录入</button>
+    </div>
+
+    <h1>就业榜</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>学号</th>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>性别</th>
+          <th>薪资</th>
+          <th>就业城市</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr>
+          <td>1</td>
+          <td>这是名称</td>
+          <td>这是年龄</td>
+          <td>这是性别</td>
+          <td>这是工资</td>
+          <td>这是所在城市</td>
+          <td>
+            <a href="javascript:" class="del">删除</a>
+          </td>
+        </tr> -->
+      </tbody>
+    </table>
+    <script>
+      const strArr = localStorage.getItem('arr');
+      // 1.1 定义数组 负责存放表格要显示的数据
+      let arr = [ ];
+      // 判断有没有数据
+      if(strArr) {
+        arr = JSON.parse(strArr);
+      } else {
+        // 没有数据生成空数组
+        arr = []
+      }
+      const tbody = document.querySelector('tbody');
+      // 2  给 录入绑定点击事件
+      const add = document.querySelector('.add');
+      const uname = document.querySelector('.uname');
+      const age = document.querySelector('.age');
+      const gender = document.querySelector('.gender');
+      const salary = document.querySelector('.salary');
+      const city = document.querySelector('.city');
+
+      // 1.2 根据数组渲染页面
+      renderTableByArr();
+
+      // 2  按钮绑定点击事件
+      add.addEventListener('click', function () {
+        // 2.1 创建一个新的对象 把表单数据都合并到对象中
+        const data = {
+          // 学号
+          id: Date.now(),
+          // 姓名
+          uname: uname.value,
+          // 年龄
+          age: age.value,
+          // 性别
+          gender: gender.value,
+          // 薪资
+          salary: salary.value,
+          // 就业城市
+          city: city.value,
+        };
+
+        // 老师打了一个 断点 来验证 上面的代码 没有写错
+        // 2.2 给数组插入新的元素
+        arr.push(data);
+        // 点击录入
+        //把数组转成字符串
+        const strArr = JSON.stringify(arr);
+        // 存一份到本地存储中
+        localStorage.setItem('arr', strArr);
+
+        // 2.3 数组发生改变  重新调用渲染页面的函数
+        renderTableByArr();
+
+        // 2.4 表单数据清空
+        uname.value = '';
+        age.value = '';
+        gender.value = '男';
+        salary.value = '';
+        city.value = '北京';
+      });
+
+      // 3 tbody绑定点击事件，同时判断被点击的是不是 del 删除标签
+      tbody.addEventListener('click', function (event) {
+        // 3.1 判断当前点击的是不是a标签
+        if (event.target.nodeName === 'A') {
+          // <a data-index="2" href="javascript:" class="del">删除</a>
+
+          // 获取到a标签 上存放的 index
+          // event.target =  a标签的dom元素
+          // console.dir(event.target.dataset.index)
+          const index = event.target.dataset.index;
+
+          // 3.3 执行数组删除元素
+          arr.splice(index,1);
+          // 删除数据
+          // 把数据转成字符串
+          const strArr = JSON.stringify(arr);
+          // 存一份到本地存储中
+          localStorage.setItem('arr', strArr);
+
+          // 3.4 调用根据数组渲染页面的函数 
+          renderTableByArr();
+        }
+      });
+      // 根据数组渲染表格
+      function renderTableByArr() {
+        let html = ``;
+        for (let index = 0; index < arr.length; index++) {
+          html += `
+         <tr>
+          <td>${arr[index].id}</td>
+          <td>${arr[index].uname}</td>
+          <td>${arr[index].age}</td>
+          <td>${arr[index].gender}</td>
+          <td>${arr[index].salary}</td>
+          <td>${arr[index].city}</td>
+          <td>
+            <a data-index="${index}" href="javascript:" class="del">删除</a>
+          </td>
+        </tr>
+         `;
+        }
+
+        // 把生成的tr插入到 tbody中
+        tbody.innerHTML = html;
+      }
+    </script>
+  </body>
+</html>

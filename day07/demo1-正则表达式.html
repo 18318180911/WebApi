@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+       // 正则的作用寻找字符串
+        const str = `金钱对你意味着什么？你有梦想吗？等等等等。一下子都让我陷入了沉思。真的需要好好的想想，然后写下来`;
+        // 定义规则
+        const reg = /金钱/;
+        // 规则和字符串匹配test
+        console.log(reg.test(str));  // 有true，没有false
+   </script>
+</body>
+</html>

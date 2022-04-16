@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <button>点击</button>
+    <img src="" alt="">
+    <script>
+        // let dress = ['./images/b01.jpg', './images/b02.jpg', './images/b03.jpg'];
+        let button = document.querySelector('button');
+        let img = document.querySelector('img');
+        button.addEventListener('click', function() {
+            // let index = parseInt(Math.random() * dress.length);
+            // img.src = dress[index] 
+            let index = parseInt(Math.random() * 4) + 1;
+            img.src = `./images/b0${index}.jpg`
+        })
+    </script>
+</body>
+</html>
