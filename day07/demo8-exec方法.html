@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let email = 'szn1@112.com';
+        // test:方法实现校验，侧重于判断匹配，返回布尔值
+        // exec:方法实现校验，侧重于校验之后的字符串提取，返回数组
+        // 匹配成功，返回数组，否则返回null
+        // 想提取字符串，将你想提取的字符串的正则表达式部分，使用()包含
+        let reg = /^(\w+)[@]((\w+)[.](\w{2,4}))$/
+        //调用方法，返回值的第一个元素是原始字符串，其他就是当前提取的字符串
+        let arr = reg.exec(email)
+        console.log(arr);
+    </script>
+</body>
+</html>

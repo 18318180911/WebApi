@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // replace方法是字符串的方法，语法str,replace(你想替换的源字符串|正则表达式，替换什么)
+        //  let str = '01020304';
+        //  // 只会把第一个0替换掉
+        //  str = str.replace(/0/, '');
+        //  // 把0都替换掉
+        //  str = str.replace(/0/g, '');
+        // //  str = str.
+        // console.log(str);
+        let keys = ['上', '下', '左','右'];
+        let str = '天天要爬上下楼梯'
+        let reg;
+        // 关键词，敏感词要替换可以用RegExp正则原始对象
+        for(let i = 0; i < keys.length; i++) {
+            reg = new RegExp(`${keys[i]}`)
+            console.log(reg, typeof reg)
+            str = str.replace(reg, '*');
+        }
+        console.log(str)
+    </script>
+</body>
+</html>

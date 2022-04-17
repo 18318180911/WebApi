@@ -34,7 +34,7 @@
     </div>
     <script>
         // console.log(/^[a-zA-Z_]\w{5,11}$/.test('_235678A0w_1'))
-        // console.log(/^[a-zA-Z0-9_ ]{6,12}$/.test('fS 12'))
+        // console.log(/^.{6,12}$/.test('fS_ 12'))
         let ipt1 = document.querySelector('#input1');
         let ipt2 = document.querySelector('#input2');
         let button = document.querySelector('.button');
@@ -47,8 +47,9 @@
                 ipt1.focus()
                 return
             }
-            // 正则：任意字符，空格，长度6-12
-            let reg2 = /^[a-zA-Z0-9_ ]{6,12}$/;
+            // 点匹配除了换行符之外的任意单个字符
+            // 正则：任意字符，长度6-12
+            let reg2 = /^.{6,12}$/;
             // 判断是否合法
             if(!reg2.test(ipt2.value)){
                 alert('密码输入不正确');

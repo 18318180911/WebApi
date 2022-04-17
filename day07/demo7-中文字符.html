@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let name = prompt('请输入你的姓名—中文');
+        // 匹配中文字符的正则表达式：[\u4e00-\u9fa5]
+        let reg = /^[\u4e00-\u9fa5]{2,}$/
+        console.log(reg.test(name));
+    </script>
+</body>
+</html>
