@@ -1,0 +1,187 @@
+<!-- 
+  1 先实现静态结构 
+  2 点击开始按钮，随机显示同学
+    1 开启定时器 
+    2 根据数组长度，获取随机数 -随机的显示同学的名称 去控制对应的li标签 选中 
+    3 一旦开始选其他同学了，需要把之前选中的同学的active样式 移除掉！！ 
+      1 排他 （获取所有的li标签，遍历他们，挨个移除选中的类 active）
+      2 最后 再根据随机的索引来设置 li标签 添加active 
+
+      1 直接获取之前选中（class=active）了的元素，移除active
+        1 第一次点击的时候 没有li标签 被添加过 active 获取它可能为空，第二次再去获取就可以了
+      2 再针对 随机数来来控制li标签 添加active 
+  3 一段时间后，把最终确定同学名单显示在页面的大标题上
+    1 点击按钮的同时也可以开启一个延时器 
+      1 控制定时器结束
+      2 可以知道当前你选中了的同学的名称（获取你的索引就可以了）（在一个延时器内想要获取一个定时器中的变量-全局变量）
+      3 把这个同学的名字设置到 标题标签上即可
+
+  4 再次点击按钮，又可以重新点名（在剩下的同学名单中）
+    1 上一个被选中的同学， 它名字要一直高亮 不应该被取消掉 
+      多定义一个类就可以了 
+      active 表示 在抽奖过程中的 选中
+      select 表示 最终被选中的同学 
+    2 解决同学被重复点名的问题
+      1 原因（一直都是在一个大大的数组中来随机抽取）
+        1 完整同学名单的arr数组 [钟贵辉 聂成林 朱鑫]
+        2 完整同学名单的li数组  
+      2 思考 能不能 每抽取一位同学 聂成林被抽中了
+        1 arr数组中 不要它 （容易实现 数组删除元素！！  splice）
+          arr=[钟贵辉,朱鑫]  
+        2 li数组中  不要它  (如何实现 li数组中不要出现 聂成林同学 )
+          li数组 也使用 splice 跟着你一起去删除元素就可以了
+          把 伪数组转成真正的数组 
+
+      3 真正的公司年会上 来抽奖
+        1 li数组 只是每一个同事的名单而已
+        2 难道 我把名单上的名字去掉 对应的那个同事 下地狱
+
+
+
+        
+
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+   <head>
+     <meta charset="UTF-8" />
+     <meta
+       name="viewport"
+       content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no"
+     />
+     <title>06-点名系统.html</title>
+     <style>
+       * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+       }
+       body {
+         padding: 20px;
+       }
+       h1 {
+         padding: 10px;
+         background-color: #9acd32;
+         color: purple;
+         margin: 10px 0;
+       }
+       button {
+         width: 100px;
+         height: 50px;
+         border-radius: 25px;
+         background-color: #9acd32;
+         color: #fff;
+         border: none;
+         font-size: 20px;
+       }
+       ul {
+         list-style: none;
+         display: flex;
+         flex-wrap: wrap;
+       }
+       li {
+         width: 100px;
+         height: 40px;
+         background-color: #000;
+         color: #fff;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         margin: 10px;
+       }
+ 
+       /* 在随机抽取的过程中被选中的 */
+       .active {
+         background-color: #9acd32;
+         color: #fff;
+       }
+       /* 确定下来了 最终被选中 */
+       .select {
+         background-color: palevioletred;
+         color: #fff;
+       }
+     </style>
+   </head>
+   <body>
+     <h1>被选中的小伙伴们:</h1>
+     <button>开始</button>
+     <ul></ul>
+     <script>
+       // 获取同学名单
+       const arr =
+         `王恒达 陈德明 吴佩阳 卢增年 周裕腾 李树鹏 巫斌斌 冯禹锋 黄伟轩 张永豪 何磊 黄润杰 尹可怡 林艳平 李超龙 黄东军 胡镇涛 李斌 曾林尉 刘洪盛 彭彪歌 宋家贵 苏家兴 谢自强 王润青 叶晓银 洪伟锋 陈婉桦 叶远航 罗锦活 肖坚镝 梁祺星 王佳丽 邱烽城 黄梓栋 连梓豪 聂嘉宏 黎子弘 刘毓湖 肖耀 彭炎 罗健法 张莹莹 黎金 陈实 陈爽爽 符群望 王淇 张观乐 谭嘉萌 李家豪 曾最祥 朱万旺 李耿佳 陈来弟 刘岩 陈柏荣 郑杰滨 史洁祥 宋紫凝 罗雅淇 王文倩 曹佳 余先城 柯庆翔 陈守驰 陈曜 陈东燕 张福民 陈达雄 诸俊洋 谷彦豪 区纪浩 陈观炎 房瞬峰 王治平 丘益振 吴泰琼 余佳龙 林观信 温永芳 李伟锋 彭垚 廖湘 冯祥标 庾荣发 崔福满 陈丹霞 苏文元 翁燕虹 漆天文 刘水兵 高航 钟贵辉 聂成林 朱鑫`.split(
+           ' '
+         );
+       // const arr = `钟贵辉 聂成林 朱鑫`.split(' '); // 真正的数组  获取dom元素的数组 是伪数组 有些数组的方法不能使用
+ 
+       const ul = document.querySelector('ul');
+       const h1 = document.querySelector('h1');
+ 
+       // 根据数组渲染页面数据
+       render();
+       // 获取li数组
+       let lis = document.querySelectorAll('li');
+       lis = domToArr(lis); // 直接开始做处理 把伪数组转成真正的数组 可以使用splice方法
+       // 获取按钮
+       const button = document.querySelector('button');
+       // 给按钮绑定点击事件
+       button.addEventListener('click', function () {
+         // 设置一个全局变量 记录随机选中的同学的索引
+         let randomIndex; //
+ 
+         // 开启定时器
+         const timeId = setInterval(function () {
+           // 直接获取之前选中（class=active）了的元素，移除active 这个元素可能为空
+           const beforeActive = document.querySelector('li.active');
+           // 不能直接移除 因为 第一次 这个标签没有active
+           if (beforeActive) {
+             // 这个标签存在了 获取到了 我才去执行 移除这个active代码
+             beforeActive.classList.remove('active');
+           }
+ 
+           // 获取随机数
+           randomIndex = Math.round(Math.random() * (arr.length - 1));
+           // 设置随机数对应的li标签 激活显示
+           lis[randomIndex].classList.add('active');
+         }, 100);
+ 
+         // 开启延时器
+         setTimeout(function () {
+           clearInterval(timeId);
+           h1.innerText += ' ' + arr[randomIndex];
+           // 要给最终选中的 li标签 添加一个 select
+           lis[randomIndex].classList.add('select');
+           // arr中删除掉 选中的同学
+           arr.splice(randomIndex, 1);
+           // 让li数组也删除掉被选中的那位同学
+           lis.splice(randomIndex, 1);
+ 
+           // 删除真正的dom元素
+           // lis[randomIndex].remove();
+         }, 3000); // 10s
+       });
+ 
+       // 负责将数组渲染到页面上
+       function render() {
+         let html = ``;
+         for (let index = 0; index < arr.length; index++) {
+           const element = arr[index];
+           html += `<li>${arr[index]}</li>`;
+         }
+         ul.innerHTML = html;
+       }
+ 
+       // 定义一个函数 负责将伪数组 转成真正的数组
+       function domToArr(domList) {
+         // 定义一个空数组
+         const arr = [];
+         // 对伪数组 进行遍历
+         for (let index = 0; index < domList.length; index++) {
+           arr.push(domList[index]); // 把dom元素取出来 装到真正的数组中
+         }
+ 
+         return arr;
+       }
+     </script>
+   </body>
+ </html>

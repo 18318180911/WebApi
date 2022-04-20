@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <table>
+        <option value="">捐赠管理</option>
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>捐赠人</th>
+            <th>受捐单位</th>
+            <th>金额</th>
+            <th>受捐日期</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <td>1</td>
+                <td>sum</td>
+                <td>好友</td>
+                <td>1000</td>
+                <td>20210-10-5</td>
+                <td>
+                    <a href="javascript:" class="del"><span>删</span><span>改</span></a>
+                </td>
+            </tr> -->
+        </tbody>
+    </table>
+    <script>
+        let arr = [
+            // id:数据编号  person:捐赠人姓名   unit:捐赠单位名称  money:捐赠金额  date:捐赠日期
+            { id: 1, person: '刘德化', unit: '壹基金', money: 1000, date: '2021-10-5' },
+            { id: 2, person: '周杰伦', unit: '自然之友', money: 1000, date: '2021-01-15' },
+            { id: 3, person: '李连杰', unit: '嫣然基金', money: 1000, date: '2021-06-7' }
+        ];
+        let tbody = document.querySelector('tbody')
+        // 1.数据渲染
+        function add1() {
+            let htmlStr = "";
+            for (let index = 0; index < arr.length; index++) {
+                htmlStr += `<tr>
+                                <td>${arr[index].id}</td>
+                                <td>${arr[index].person}</td>
+                                <td>${arr[index].unit}</td>
+                                <td>${arr[index].money}</td>
+                                <td>${arr[index].date}</td>
+                                <td>
+                                    <a href="javascript:" class="del"><span>删</span><span>改</span></a>
+                                </td>
+                            </tr>`
+                
+            }
+            tbody.innerHTML = htmlStr
+        }
+        add1();
+        // 2.添加
+        
+    </script>
+</body>
+</html>

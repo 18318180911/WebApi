@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            padding: 20px;
+        }
+        h1 {
+            padding: 10px;
+            background-color: #9acd32;
+            color: blueviolet;
+            margin: 10px 0;
+        }
+        button {
+            width: 80px;
+            height: 30px;
+            background-color: #9acd32;
+            color: #fff;
+            font-size: 20px;
+        }
+        ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        li {
+            width: 80px;
+            height: 30px;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+        }
+        .active {
+            background-color: #9acd32;
+            color: #fff;
+        }
+        .select {
+            background-color: palevioletred;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>被选中小伙伴</h1>
+    <button>开始</button>
+    <ul></ul>
+    <script>
+        const arr =
+        `王恒达 陈德明 吴佩阳 卢增年 周裕腾 李树鹏 巫斌斌 冯禹锋 黄伟轩 张永豪 何磊 黄润杰 尹可怡 林艳平 李超龙 黄东军 胡镇涛 李斌 曾林尉 刘洪盛 彭彪歌 宋家贵 苏家兴 谢自强 王润青 叶晓银 洪伟锋 陈婉桦 叶远航 罗锦活 肖坚镝 梁祺星 王佳丽 邱烽城 黄梓栋 连梓豪 聂嘉宏 黎子弘 刘毓湖 肖耀 彭炎 罗健法 张莹莹 黎金 陈实 陈爽爽 符群望 王淇 张观乐 谭嘉萌 李家豪 曾最祥 朱万旺 李耿佳 陈来弟 刘岩 陈柏荣 郑杰滨 史洁祥 宋紫凝 罗雅淇 王文倩 曹佳 余先城 柯庆翔 陈守驰 陈曜 陈东燕 张福民 陈达雄 诸俊洋 谷彦豪 区纪浩 陈观炎 房瞬峰 王治平 丘益振 吴泰琼 余佳龙 林观信 温永芳 李伟锋 彭垚 廖湘 冯祥标 庾荣发 崔福满 陈丹霞 苏文元 翁燕虹 漆天文 刘水兵 高航 钟贵辉 聂成林 朱鑫`.split(
+          ' '
+        );
+        const ul = document.querySelector('ul');
+        const h1 = document.querySelector('h1');
+        // render():渲染
+        // render();
+        let lis = document.querySelectorAll('li');
+        const button = document.querySelector('button');
+        button.addEventListener('click', function() {
+            let randomIndex;
+            let unSelectLis;
+            const timeId = setInterval(function() {
+                unSelectLis = document.querySelectorAll('li:not(.select)');
+                const beforeActive = document.querySelector('li.article');
+                // if(beforeActive) {
+                //     beforeActive.classList.remove('active');
+                // }
+                randomIndex = Math.round(Math.random() * (unSelectLis.length - 1));
+                unSelectLis[randomIndex].classList.add('active');
+            }, 300)
+        })
+    </script>
+</body>
+</html>

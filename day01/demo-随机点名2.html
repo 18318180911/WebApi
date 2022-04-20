@@ -27,9 +27,9 @@
         // 绑定点击事件
         start.addEventListener('click', function() {
             clearInterval(timerId)
-          // 定时器
+            // 定时器
             timerId = setInterval(function() {
-                  // 随机点名
+                // 随机点名
                 index = parseInt(Math.random() * names.length)
                 div.innerText = names[index];
             }, 100)

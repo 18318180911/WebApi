@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 1200px;
+            height: 30px;
+            background-color: #9acc32;
+            text-align: center;
+            line-height: 30px;
+        }
+        h4 {
+            color: #ac5adb;
+        }
+        button {
+            width: 40px;
+            height: 40px;
+            background-color: #9acc32;
+            color: #fff;
+            font-size: 12px;
+        }
+        input {
+            width: 70px;
+            height: 20px;
+            background-color: #feebcd;
+            border: 1px solid #9acc32;
+        }
+        table {
+            width: 1200px;
+            color: #fff;
+        }
+        td {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            background-color: #000;
+        }
+        .active {
+            background-color: #9acc32;
+        }
+    </style>
+</head>
+<body>
+    <div><h3>点名系统</h3></div>
+    <h4>被选中的小伙伴：<span></span></h4>
+    <button>开始</button> 时间: <input type="text">
+    <table class="tr">
+        <tr>
+            <td class="active">1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+            <td>30</td>
+        </tr>
+        <tr>
+            <td>31</td>
+            <td>32</td>
+            <td>33</td>
+            <td>34</td>
+            <td>35</td>
+            <td>36</td>
+            <td>37</td>
+            <td>38</td>
+            <td>39</td>
+            <td>40</td>
+        </tr>
+    </table>
+    <script>
+        // h3
+        setInterval(function() {
+            function getRandomColor(min, max) {
+            return Math.round(Math.random() * (max - min) + min);
+        }
+        let color1 = getRandomColor(0, 255);
+        let color2 = getRandomColor(0, 255);
+        let color3 = getRandomColor(0, 255);
+        let h3 = document.querySelector('h3');
+        h3.style.color = `rgb(${color1}, ${color2}, ${color3})`
+        }, 500)
+        let button = document.querySelector('button');
+        let td = document.querySelectorAll('td');
+        let span = document.querySelector('span');
+        button.addEventListener('click',function() {
+            let timerId = setInterval(function() {
+                let index = parseInt(Math.random() * td.length);
+                document.querySelector('.tr td.active').className = "";
+                td[index].className = 'active';
+            },300)
+            setTimeout(function() {
+                clearInterval(timerId)
+                // 显示在页面上
+                let td = document.querySelectorAll('td');
+                for(var i = 0; i < td.length; i++) {
+                    if(td[i].className=='active') {
+                        // alert(td[i].innerHTML)
+                        span.innerText = td[i].innerHTML
+                    }
+                }
+            },1000)
+        });
+    </script>
+</body>
+</html>

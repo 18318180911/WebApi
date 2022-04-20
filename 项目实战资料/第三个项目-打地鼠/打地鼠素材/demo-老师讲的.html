@@ -1,0 +1,192 @@
+<!-- 
+  1 编写静态结构
+    1 地鼠部分，主要就是6个li标签
+    2 li标签存放两张图片 分别 地鼠和泥土
+      1 设置泥土 在li的底部
+      2 设置地鼠 一开始看不见（藏底下）
+    3 补充上剩下标签结构 
+  2 给按钮绑定点击事件
+    1 开启定时器
+      1 获取到随机的地鼠 
+      2 控制它添加上一个类 active 
+      3 一会过后(延迟器)，地鼠 移除这个类 
+    2 定时器 不会永远执行，点击事件触发了也开启一个延时器-控制定时器的取消
+
+  3 点击地鼠的时候，可以计分
+    1 获取地鼠标签，遍历它们 绑定点击事件 （事件委托）
+    2 事件触发了 获取到记录分数的标签 span 
+    3 设置它 分数++ 
+    4 点击中地鼠的时候，也需要让它 隐藏 
+
+  4 优化
+    1 手速比较快点击多次 bug 
+    2 只给有两个类的地鼠设置分数+1 
+    3 当我们点中了一个地鼠后 设置它的类 等于 1个 
+
+    4 重复点击了开始按钮 开启多个定时器
+      1 点击一次 禁用按钮
+      2 时间多了 重新启用 
+     
+  
+  
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+   <head>
+     <meta charset="UTF-8" />
+     <meta
+       name="viewport"
+       content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no"
+     />
+     <title>04-打地鼠.html</title>
+     <style>
+       * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+       }
+       ul {
+         list-style: none;
+         /* 大概三个泥土的宽度 */
+         width: 1200px;
+         display: flex;
+         flex-wrap: wrap;
+         margin: 0 auto;
+       }
+       li {
+         width: 400px;
+         /* 大概是地鼠的高 300 */
+         height: 300px;
+ 
+         border: 1px solid #000;
+ 
+         position: relative;
+ 
+         overflow: hidden;
+       }
+       img {
+         position: absolute;
+         left: 50%;
+         bottom: 0;
+         transform: translate(-50%, 0);
+       }
+       /* 泥土 */
+       .dirt {
+         z-index: 100;
+         /* 背景是白色 导致 完全看不见 */
+         /* background-color: #fff;  */
+         /* 高度有一半是可以看见 一半是看不见 */
+         /* 设置 渐变 */
+         /* 上半部分是透明色，下半部分是白色 */
+         background-image: linear-gradient(
+           to bottom,
+           transparent 50%,
+           #fff 50%,
+           #fff 100%
+         );
+         /* background-image: linear-gradient(to bottom,red 50%,black 50%,black 100%); */
+       }
+       /* 地鼠 */
+       .mole {
+         /* 往下移动自身的高度 距离 */
+         transform: translate(-50%, 100%);
+ 
+         /* 过渡 只针对 transform 有过渡 其他属性如颜色没有过渡  */
+         /* 当我移除了 active的时候 transform 会有过渡，而背景颜色马上消失  */
+         transition:transform 1s;
+       }
+ 
+       /* 让地鼠重新显示 */
+       .active {
+         transform: translate(-50%, 0);
+         background-color: yellow;
+       }
+       h1 {
+         text-align: center;
+       }
+       button {
+         width: 100px;
+         height: 40px;
+         border-radius: 20px;
+         background-color: #fec600;
+         font-size: 18px;
+         display: block;
+         margin: 10px auto;
+       }
+     </style>
+   </head>
+   <body>
+     <h1>打地鼠游戏 : <span>0</span></h1>
+     <button>开始</button>
+     <ul>
+       <li>
+         <img class="dirt" src="./images/dirt.svg" alt="" />
+         <img class="mole" src="./images/mole.svg" alt="" />
+       </li>
+       <li>
+         <img class="dirt" src="./images/dirt.svg" alt="" />
+         <img class="mole" src="./images/mole.svg" alt="" />
+       </li>
+       <li>
+         <img class="dirt" src="./images/dirt.svg" alt="" />
+         <img class="mole" src="./images/mole.svg" alt="" />
+       </li>
+       <li>
+         <img class="dirt" src="./images/dirt.svg" alt="" />
+         <img class="mole" src="./images/mole.svg" alt="" />
+       </li>
+       <li>
+         <img class="dirt" src="./images/dirt.svg" alt="" />
+         <img class="mole" src="./images/mole.svg" alt="" />
+       </li>
+       <li>
+         <img class="dirt" src="./images/dirt.svg" alt="" />
+         <img class="mole" src="./images/mole.svg" alt="" />
+       </li>
+     </ul>
+     <script>
+       const ul = document.querySelector('ul');
+       const span = document.querySelector('span');
+       const button = document.querySelector('button');
+       // 获取地鼠数组
+       const moles = document.querySelectorAll('.mole');
+       button.addEventListener('click', function () {
+         button.disabled=true
+         // 设置一个变量 计算地鼠出现的次数
+ 
+         // 开启定时器
+         const timeId = setInterval(function () {
+           // 获取 0- 5 随机数
+           const randomIndex = Math.round(Math.random() * (moles.length - 1));
+           // 设置 地鼠出现
+           moles[randomIndex].classList.add('active');
+           setTimeout(function () {
+             // 一会之后 让它隐藏
+             moles[randomIndex].classList.remove('active');
+           }, 1200); // 过渡时间是设置了1s种，设置一会 1200 停留了200毫秒了 才让地鼠开始隐藏
+         }, 1000);
+ 
+         // 开启一个延时器 设置多少时间后 让定时器取消
+         setTimeout(function () {
+           clearInterval(timeId);
+           button.disabled=false
+         }, 1000 * 10);
+       });
+ 
+       // 遍历 给地鼠绑定事件  ul
+       ul.addEventListener('click', function (event) {
+         console.log(event.target.className);
+         // 所看见的地鼠 类 其实是有两个  mole active  
+         // 只要有active ，表示 这个地鼠正常冒头显示
+         // 也解决了 同一个地鼠点击多次的问题
+         if (event.target.className === 'mole active') {
+           // 点击的是地鼠
+           span.innerText++;
+ 
+           // 点击中了地鼠 设置地鼠隐藏 
+           event.target.classList.remove("active");
+         }
+       });
+     </script>
+   </body>
+ </html>

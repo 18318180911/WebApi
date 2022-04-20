@@ -167,34 +167,34 @@
         let salaryEle = document.querySelector('.salary')
         let cityEle = document.querySelector('.city')
         function add1() {
-            let htmlStr = '';
-            arr.forEach(function(item, index) {
-                htmlStr += `<tr>
-                            <td>${index + 1}</td>
-                            <td>${item.uname}</td>
-                            <td>${item.age}</td>
-                            <td>${item.gender}</td>
-                            <td>${item.salary}</td>
-                            <td>${item.city}</td>
-                            <td>
-                                <a href="javascript:" class="del">删除</a>
-                            </td>
-                            </tr>`
-            })
-            // for (let index = 0; index < arr.length; index++) {
+            // let htmlStr = '';
+            // arr.forEach(function(item, index) {
             //     htmlStr += `<tr>
-            //                     <td>${arr[index].stuId}</td>
-            //                     <td>${arr[index].uname}</td>
-            //                     <td>${arr[index].age}</td>
-            //                     <td>${arr[index].gender}</td>
-            //                     <td>${arr[index].salary}</td>
-            //                     <td>${arr[index].city}</td>
-            //                     <td>
-            //                         <a href="javascript:" class="del">删除</a>
-            //                     </td>
+            //                 <td>${index + 1}</td>
+            //                 <td>${item.uname}</td>
+            //                 <td>${item.age}</td>
+            //                 <td>${item.gender}</td>
+            //                 <td>${item.salary}</td>
+            //                 <td>${item.city}</td>
+            //                 <td>
+            //                     <a href="javascript:" class="del">删除</a>
+            //                 </td>
             //                 </tr>`
+            // })
+            for (let index = 0; index < arr.length; index++) {
+                htmlStr += `<tr>
+                                <td>${arr[index].stuId}</td>
+                                <td>${arr[index].uname}</td>
+                                <td>${arr[index].age}</td>
+                                <td>${arr[index].gender}</td>
+                                <td>${arr[index].salary}</td>
+                                <td>${arr[index].city}</td>
+                                <td>
+                                    <a href="javascript:" class="del">删除</a>
+                                </td>
+                            </tr>`
                 
-            // }
+            }
         tbody.innerHTML = htmlStr
         }
         add1();

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #ccc;
+        }
+        ul {
+            list-style: none;
+        }
+        li {
+            padding: 20px;
+            text-align: left;
+            font-size: 30px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        li input {
+            margin-right: 10px;
+        }
+        li button {
+            display: none;
+            padding: 5px;
+        }
+        li:hover button {
+            display: inline-block;
+            cursor: pointer;
+        }
+        /* 当复选框被勾选了的时候，选中它的兄弟标签span */
+        .chk:checked + span {
+            text-decoration: line-through;
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        .box {
+            background-color: #fff;
+            width: 60vw;
+            padding: 20px 20px 0;
+            margin: 50px auto;
+        }
+        .box .tool input {
+            width: 100%;
+            height: 50px;
+            text-indent: 20px;
+            font-size: 20px;
+            font-style: italic;
+            color: #666;
+            font-weight: 700;
+        }
+        section {
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        a {
+            text-decoration-color: #666;
+            color: inherit;
+        }
+    </style>
+</head>
+<body> 
+        <div class="box">
+            <h1>待办列表</h1>
+            <div class="tool">
+                <input autofocus="" type="text" placeholder="请输入待办事项">
+            </div>
+            <ul></ul>
+            <section>
+                <span>0 未完成</span><a href="#">清理<b>0</b>已完成</a>
+            </section>
+        </div>
+    </div>
+    <script>
+        const input = document.querySelector('.tool input');
+        // 根据页面需求，定义数组格式：arr = [{text:"每一个列表要显示的文字", checked:false}]
+        let arr = [
+            // 数据驱动视图：标签就是视图(li),数组就是数据
+        ];
+        const ul = document.querySelector('ul');
+        // 未完成
+        const unFinishSpan = document.querySelector('section span');
+        // 已完成 
+        const finishA = document.querySelector('a b');
+        // 清理
+        const a = document.querySelector('a'); 
+        // 全局的变量数组用来管理页面，页面要显示的数据
+        const strArr = localStorage.getItem('todo');
+        if(strArr) {
+            arr = JSON.parse(strArr)
+        };
+        render();
+        input.addEventListener('keydown', function(event) {
+            // 1.1 判断用户按下的是不是回车键
+            if (event.key === 'Enter') {
+                // console.log(1);
+                // 获取输入值，把它插入到数组中
+                arr.push({
+                    text:input.value,
+                    checked:false
+                });
+                // console.log(arr);
+                render();
+            }
+        });
+        // 事件委托
+        // 把复选框对应的状态功能设置回数组中
+        ul.addEventListener('click', function(event) {
+             // 获取到复选框对应数组的下标
+             const index = event.target.dataset.index;
+            if(event.target.className === 'chk') {
+                // 获取到复选框对应数组的下标
+                // const index = event.target.dataset.index;
+                // 修改数组中元素的选中状态
+                arr[index].checked = !arr[index].checked;
+                // console .log(arr);
+                // 重新渲染页面
+                render();
+            }
+            //3.删除
+            // 点击删除按钮
+            else if (event.target.nodeName == 'BUTTON') {
+                // 数组删除元素
+                arr.splice(index, 1);
+                render();
+            }
+        });
+        // 清理已经完成
+        a.addEventListener('click', function() {
+            // 留下未完成的
+            let newArr = [];
+            for (let index = 0; index < arr.length; index++) {
+                // 取反表示未选择未完成
+                if(!arr[index].checked) {
+                    newArr.push(arr[index])
+                }
+            }
+            // 把未完成的重新赋值给数组
+            arr = newArr;
+            // 数组发生改变需要重新渲染页面
+            render();
+        })
+        // 封装函数，负责把数组的数据渲染到页面上
+        function render() {
+            let html = ``;
+            for (let index = 0; index < arr.length; index++) {
+                // checked属性要不要写，取决于当前遍历的元素的checked属性
+                // 要根据当前元素的checked属性来决定要不要数组checked标签上
+                const renderChecked = arr[index].checked ? 'checked':''; 
+                html+=`
+                    <li>
+                        <div><input data-index="${index}" type="checkbox" ${renderChecked} class="chk"/><span class="false">${arr[index].text}</span></div>
+                        <button data-index="${index}">X</button>
+                    </li>`;
+            }
+            ul.innerHTML = html;
+            // 在数据渲染时。存一份数据到本地存储中
+            localStorage.setItem('todo', JSON.stringify(arr));
+            statistics();
+        }
+        // 4.统计：完成和未完成
+        function  statistics() {
+            let unFinishNums = 0;
+            let finishNums = 0;
+            for (let index = 0; index < arr.length; index++) {
+                if (arr[index].checked) {
+                    // 找到一个已经完成
+                    finishNums++;
+                } else {
+                    unFinishNums++;
+                }
+            }
+            // 设置未完成
+            unFinishSpan.innerText = unFinishNums + '未完成';
+            // 设置已完成
+            finishA.innerText = finishNums;
+        }
+    </script>
+</body>
+</html>

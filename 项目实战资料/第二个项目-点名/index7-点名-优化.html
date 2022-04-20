@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 1200px;
+            height: 30px;
+            background-color: #9acc32;
+            text-align: center;
+            line-height: 30px;
+        }
+        h4 {
+            color: #ac5adb;
+        }
+        button {
+            width: 40px;
+            height: 40px;
+            background-color: #9acc32;
+            color: #fff;
+            font-size: 12px;
+        }
+        input {
+            width: 70px;
+            height: 20px;
+            background-color: #feebcd;
+            border: 1px solid #9acc32;
+        }
+        .box li {
+            vertical-align: top;
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            text-align: center;
+            line-height: 50px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div><h3>点名系统</h3></div>
+    <h4 class="select">被选中的小伙伴：<span> </span></h4>
+    <button>开始</button> 时间: <input type="text">
+    <ul class="box">
+        <!-- <li>2</li>
+        <li>3</li>
+        <li>4</li> -->
+    </ul>
+    <script>
+        // h3
+        setInterval(function() {
+            function getRandomColor(min, max) {
+            return Math.round(Math.random() * (max - min) + min);
+        }
+        let color1 = getRandomColor(0, 255);
+        let color2 = getRandomColor(0, 255);
+        let color3 = getRandomColor(0, 255);
+        let h3 = document.querySelector('h3');
+        h3.style.color = `rgb(${color1}, ${color2}, ${color3})`
+        }, 500);
+
+
+        let names = ['1', '2', '3', '4','5', '6','7','8','9','10','11', '12', '13', '14','15', '16','17','18','19','20'];
+        let button = document.querySelector('button');
+        let box = document.querySelector('.box');
+        
+        let strHtml = '';
+        let timerId
+        let index
+        for (let index = 0; index < names.length; index++) {
+            strHtml += `<li>${names[index]}</li>`
+        }
+        box.innerHTML = strHtml;
+        let li = document.querySelectorAll('.box li');
+        let select = document.querySelector('.select');
+        let span = document.querySelectorAll('span');
+        // 点击事件
+        button.addEventListener('click', function() {
+            let newName = document.createElement('span');
+            select.appendChild(newName)
+            // 定时器
+            timerId = setInterval(function() {
+                // 随机数
+                index = parseInt(Math.random() * names.length);
+                // 清空所有style
+                for (let j = 0; j < li.length; j++) {
+                    li[j].removeAttribute('style')
+                }
+                // 随机选择的li标签背景颜色
+                li[index].style.backgroundColor = 'green';
+                li[index].classList.add('style')
+                newName.innerHTML = names[index]
+            }, 200)
+            // 延时器
+            setTimeout(function() {
+                // 清除点名器
+                clearInterval(timerId)
+                // 显示在页面上
+                let li = document.querySelectorAll('.box li');
+                for(var i = 0; i < li.length; i++) {
+                    if(li[i].style.backgroundColor=='green') {
+                        span.innerText = li[i].innerHTML
+                    }
+                }
+            },1000)
+        })
+    </script>
+</body>
+</html>

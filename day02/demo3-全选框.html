@@ -25,12 +25,14 @@
           font: bold 16px '微软雅黑';
           color: #fff;
           height: 24px;
+          text-align: lin;
         }
   
         td {
           border: 1px solid #d0d0d0;
           color: #404060;
           padding: 10px;
+          
         }
   
         .allCheck {
@@ -75,6 +77,24 @@
         </tr>
         </table>
         <script>
+            //获取全部的多选框（数组）
+            let v = document.querySelectorAll(".ck");
+            //给全部的.ck多选框加一个点击事件
+            for(let i = 0; i< v.length; i++) {
+                //为多选框添加点击事件
+                v[i].onclick =function(e) {
+                    if(v[i].checked) {
+                        //选中时，加穿线
+                        e.target.parentNode.nextElementSibling.style.textDecoration="line-through"
+                    }else {
+                        //当是未选中时，去穿线或取消textDecoration样式
+                        e.target.parentNode.nextElementSibling.style.textDecoration=""
+                    }
+
+                }
+            }
+            
+       
             //获取元素，获取全选复选框
             let checkAll = document.querySelector('#checkAll');
             // 获取文本容器

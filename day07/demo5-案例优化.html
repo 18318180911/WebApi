@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <div>
+            <input type="text" id="username" placeholder="请输入用户名">
+        </div>
+        <div>
+            <input type="password" id="password" placeholder="请输入密码">
+        </div>
+        <button>注册</button>
+    </form>
+    <script>
+        // 把正则的验证 封装在一个对象的方法中
+        const formTest = {
+            validUserName: function (value) {
+                return /^[a-zA-Z_]\w{5,11}$/.test(value);
+            },
+            vilidPassWord: function (value) {
+                return  /^[\d\D]{5,11}$/.test(value);
+            }
+        };
+        const username = document.querySelector('#username');
+        const password = document.querySelector('#password');
+        const button = document.querySelector('button');
+        button.addEventListener('click', function() {
+              // 获取一下表单的值
+            const usernameValue = username.value;
+            const passwordValue = password.value;
+            if (!formTest.validUserName(usernameValue)) {
+                alter('用户名不合法');
+                // 不通过就返回 返回了 return undefined  目的不在于返回值，而是终止这个函数 不再往下执行
+                return;
+            } else if (!formTest.vilidPassWord(passwordValue)) {
+                alert('密码不合法');
+                return;
+            }
+            alert('恭喜，注册成功')
+        })
+    </script>
+</body>
+</html>
